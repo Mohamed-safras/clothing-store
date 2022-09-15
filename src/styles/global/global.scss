@@ -1,0 +1,22 @@
+$colorWhite: #fff;
+$colorBlack: #111;
+
+@mixin btn($backgroundColor, $color, $fontsize) {
+  background: $backgroundColor;
+  color: $color;
+  width: 150px;
+  height: 35px;
+  font-size: $fontsize;
+  transition: color 350ms ease-in-out;
+  outline: none;
+  border: 3px solid $colorWhite;
+  text-transform: uppercase;
+  border-radius: 50px;
+  font-weight: 600;
+  fontfamily: arial;
+  cursor: pointer;
+  &:hover {
+    color: $backgroundColor;
+    background: $color;
+  }
+}
