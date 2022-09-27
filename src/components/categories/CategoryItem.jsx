@@ -1,7 +1,8 @@
+import React from "react";
 import "../../styles/categories/categoryItem.styles.scss";
 const CategoryItem = ({ title, imageUrl }) => {
   return (
-    <div className="category-container">
+    <React.Fragment>
       <div
         className="background-image"
         style={{
@@ -12,7 +13,7 @@ const CategoryItem = ({ title, imageUrl }) => {
         <h2>{title}</h2>
         <p>shop now</p>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

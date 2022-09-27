@@ -1,39 +1,29 @@
 import React from "react";
-import Categories from "./components/categories/Categories";
-import Navbar from "./components/navbar/Navbar";
+import { Route, Routes, useLocation } from "react-router-dom";
 
+import Navbar from "./components/navbar/Navbar";
+import Cart from "./pages/Cart";
+import Contact from "./pages/Contact";
+import Details from "./pages/Details.";
+import Home from "./pages/Home";
+import Shop from "./pages/Shop";
+import SignIn from "./pages/SignIn";
 const App = () => {
-  const categories = [
-    {
-      id: 1,
-      title: "hats",
-      imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
-    },
-    {
-      id: 2,
-      title: "jackets",
-      imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
-    },
-    {
-      id: 3,
-      title: "sneakers",
-      imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
-    },
-    {
-      id: 4,
-      title: "womens",
-      imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-    },
-    {
-      id: 5,
-      title: "mens",
-      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
-    },
-  ];
+  const { pathname } = useLocation();
+  const category = pathname.split("/")[1];
   return (
     <React.Fragment>
-      <Navbar />
-      <Categories categories={categories} />
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Home />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path={`/${category}/details/:id`} element={<Details />} />
+        </Route>
+
+        <Route path="signin" element={<SignIn />} />
+      </Routes>
     </React.Fragment>
   );
 };
