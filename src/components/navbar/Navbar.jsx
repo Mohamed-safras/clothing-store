@@ -1,6 +1,6 @@
 import React from "react";
 import { BsBagDash } from "react-icons/bs";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ReactComponent as Crown } from "../../assets/crown.svg";
 import "../../styles/navbar/navbar.styles.scss";
 
@@ -13,22 +13,39 @@ const Navbar = () => {
         </Link>
         <ul className="nav-links">
           <li className="nav-link">
-            <Link to="/shop">SHOP</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? "link active" : "link")}
+              to="/shop"
+            >
+              SHOP
+            </NavLink>
           </li>
           <li className="nav-link">
-            <Link to="/contact">CONTACT</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? "link active" : "link")}
+              to="/contact"
+            >
+              CONTACT
+            </NavLink>
           </li>
           <li className="nav-link">
-            <Link to="/signin">SIGN IN</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? "link active" : "link")}
+              to="/signin"
+            >
+              SIGN IN
+            </NavLink>
           </li>
           <li className="nav-link">
-            <Link to="/cart">
+            <NavLink
+              className={({ isActive }) => (isActive ? "link active" : "link")}
+              to="/cart"
+            >
               <BsBagDash />
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
-      <Outlet />
     </React.Fragment>
   );
 };

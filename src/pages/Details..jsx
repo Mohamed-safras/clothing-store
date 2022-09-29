@@ -1,35 +1,83 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from "react";
+import {
+  Link,
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
+import NotFound from "./NotFound";
 
 const Details = () => {
-  const { pathname } = useLocation();
-  const paramId = pathname.split("/")[3];
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [item, setItem] = useState({});
+  const param = useLocation().pathname.split("/")[2];
+  const [error, setError] = useState("");
 
-  const [data, setData] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:8000/categories/${paramId}`)
+    fetch("http://localhost:8000/items")
       .then((response) => {
+        if (!response.ok) {
+          throw Error("something went wrong");
+        }
         return response.json();
       })
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => {
-        console.log(error);
+      .then((product) => {
+        const data = product[param];
+
+        if (!data) return;
+
+        setItem(data.find((item) => item.id === id));
       });
-  }, [paramId]);
+  }, [param, id]);
 
   return (
-    <div style={{ padding: "0 20px" }}>
-      <h1>{data.title}</h1>
-      <div style={{ maxWidth: "500px", height: "400px" }}>
-        <img
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          src={data.imageUrl}
-          alt="ds"
-        />
-      </div>
-    </div>
+    <Fragment>
+      {error ? (
+        <NotFound />
+      ) : (
+        <div style={{ padding: "0 20px" }}>
+          <h1>{item?.name}</h1>
+          <div style={{ maxWidth: "500px", height: "400px" }}>
+            <img
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              src={item?.image}
+              alt={item?.name}
+            />
+          </div>
+          <ul
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "start",
+            }}
+          >
+            {item?.sizes?.map((size) => (
+              <li
+                style={{
+                  margin: "10px",
+                  background: "black",
+                  color: "white",
+                  width: "40px",
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "10px",
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                }}
+                key={size}
+              >
+                {size}
+              </li>
+            ))}
+          </ul>
+          <button onClick={() => navigate(-1)}>back</button>
+        </div>
+      )}
+    </Fragment>
   );
 };
 
