@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, useLocation, useParams } from "react-router-dom";
 
 import Cart from "./pages/Cart";
@@ -8,8 +8,10 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
 import SharedLayout from "./pages/SharedLayout";
+import SharedProductLayout from "./pages/SharedProductLayout";
 import Shop from "./pages/Shop";
 import SignIn from "./pages/SignIn";
+
 const App = () => {
   const param = useLocation().pathname.split("/")[2];
   return (
@@ -20,8 +22,12 @@ const App = () => {
           <Route path="cart" element={<Cart />} />
           <Route path="shop" element={<Shop />} />
           <Route path="contact" element={<Contact />} />
-          <Route path={`products/${param}`} element={<Products />} />
-          <Route path={`products/${param}/:id`} element={<Details />} />
+
+          <Route path={`products/${param}`} element={<SharedProductLayout />}>
+            <Route index element={<Products />} />
+            <Route path={`:id`} element={<Details />} />
+          </Route>
+
           <Route path="signin" element={<SignIn />} />
           <Route path="*" element={<NotFound />} />
         </Route>
