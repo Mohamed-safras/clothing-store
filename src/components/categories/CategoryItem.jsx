@@ -11,6 +11,7 @@ const CategoryItem = ({ title, imageUrl }) => {
       />
       <div className="category-body-contianer">
         <h2>{title}</h2>
+
         <p>shop now</p>
       </div>
     </React.Fragment>

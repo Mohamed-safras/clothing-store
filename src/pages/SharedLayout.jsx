@@ -6,6 +6,7 @@ const SharedLayout = () => {
   return (
     <Fragment>
       <Navbar />
+
       <Outlet />
     </Fragment>
   );
