@@ -18,6 +18,7 @@ const Categories = () => {
         console.log(error);
       });
   }, []);
+
   return (
     <div className="categories-contianer">
       {categories.map((category) => (

@@ -33,7 +33,9 @@ const Products = () => {
               param={param}
               title={category.name}
               imageUrl={category.image}
-            />
+            >
+              {category.price}
+            </CategoryItem>
           </Link>
         ))}
       </div>

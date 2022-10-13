@@ -78,30 +78,35 @@
         "id": "1sXsDf4535xDafsRw",
         "name": "Men sneakers shoe (White)",
         "sizes": ["S", "L", "XL", "XXL"],
+        "price": 50,
         "image": "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/10331501/2020/3/18/d4d07c60-88d9-43d9-aa78-9cc7712816321584508934272-US-Polo-Assn-Men-White-Colourblocked-Sneakers-84015845089331-1.jpg"
       },
       {
         "id": "1sXsDf4535xDdasdd",
         "name": "Men sneakers shoe (White)",
         "sizes": ["S", "L", "XL", "XXL"],
+        "price": 55,
         "image": "https://5.imimg.com/data5/ANDROID/Default/2022/2/QH/YV/DP/73718625/product-jpeg-500x500.jpg"
       },
       {
         "id": "1sXsDdsadasdd",
         "name": "Men sneakers shoe (White)",
         "sizes": ["S", "L", "XL", "XXL"],
+        "price": 40,
         "image": "https://5.imimg.com/data5/HM/ZA/IY/SELLER-84868583/men-sneakers-shoes-1000x1000.jpg"
       },
       {
         "id": "1sXdssDfdasdDdasdd",
         "name": "Men sneakers shoe (blue)",
         "sizes": ["S", "L", "XXL"],
+        "price": 60,
         "image": "https://static.nike.com/a/images/w_1920,c_limit/4c8bdb53-49a1-4b03-9b3f-5334e257a8bd/how-to-pick-good-shoes-for-travel.jpg"
       },
       {
         "id": "1sXdassDfdsadasddsad",
         "name": "Men sneakers shoe (blue)",
         "sizes": ["L", "XL", "XXL"],
+        "price": 50,
         "image": "https://i.ebayimg.com/thumbs/images/g/-VUAAOSwhhZisewZ/s-l300.jpg"
       }
     ],
@@ -109,6 +114,7 @@
       {
         "id": "1sfsdf4535xDAfsRw",
         "name": "base hats portugal",
+        "price": 10,
         "image": "https://images.complex.com/complex/image/upload/c_crop,h_393,w_629,x_8,y_124/c_fill,dpr_auto,f_auto,fl_lossy,g_face,q_auto,w_1280/ljjim66ysfqzbexnwnzk.png"
       }
     ],
@@ -116,21 +122,25 @@
       {
         "id": "1sfsdS4535xDAfsRw",
         "name": "suite",
+        "price": 100,
         "image": "https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWVucyUyMGZhc2hpb258ZW58MHx8MHx8&w=1000&q=80"
       },
       {
         "id": "1sfdfssdsa35dsaRw",
         "name": "T-shirt(mens)",
+        "price": 20,
         "image": "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/10940528/2020/2/13/3e484090-d487-4252-9f30-beab10ce1f0a1581594832846-Roadster-Men-Tshirts-4501581594830605-1.jpg"
       },
       {
         "id": "1sfsdSsdf453dsfsAfsfsdfRw",
         "name": "T-shirt(Maroon)",
+        "price": 20,
         "image": "https://cdn.shopify.com/s/files/1/0266/6276/4597/products/300910923MDWINE_2_1024x1024.jpg?v=1663920599"
       },
       {
         "id": "1sffsdfsdSfsfsdw",
         "name": "T-shirt(White)",
+        "price": 20,
         "image": "https://media.very.co.uk/i/very/RRDAM_SQ1_0000000269_WHITE_BLACK_MDf/adidas-originals-trefoil-t-shirt-whiteblack.jpg?$180x240_retinamobilex2$"
       }
     ]

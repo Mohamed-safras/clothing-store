@@ -10,16 +10,20 @@ const SignIn = () => {
   const logGoogleUser = async () => {
     try {
       const { user } = await signInWithGooglePopup();
-      console.log(user.uid, user.email);
-      createUserFromAuth(user);
-    } catch (error) {}
+      await createUserFromAuth(user);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const logGithubUser = async () => {
     try {
-      const response = await signInWithGithubPopup();
-      console.log(response);
-    } catch (error) {}
+      const { user } = await signInWithGithubPopup();
+      console.log(user);
+      await createUserFromAuth(user);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
