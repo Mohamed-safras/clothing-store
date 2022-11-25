@@ -22,12 +22,10 @@ const App = () => {
           <Route path="cart" element={<Cart />} />
           <Route path="shop" element={<Shop />} />
           <Route path="contact" element={<Contact />} />
-
           <Route path={`products/${param}`} element={<SharedProductLayout />}>
             <Route index element={<Products />} />
             <Route path={`:id`} element={<Details />} />
           </Route>
-
           <Route path="signin" element={<SignIn />} />
           <Route path="*" element={<NotFound />} />
         </Route>
