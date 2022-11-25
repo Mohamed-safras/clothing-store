@@ -1,35 +1,66 @@
 import React, { useEffect } from "react";
 
+import { getRedirectResult } from "firebase/auth";
+import SignUp from "../components/signup/SignUp";
+import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
+import { auth } from "../utils/firebase/firebase.utils";
+
 import {
-  createUserFromAuth,
   signInWithGithubPopup,
-  signInWithGooglePopup,
-} from "../utils/firebase/firebase.utils";
+  signInWithGoogleRedirect,
+} from "../utils/firebase/SignInMethods";
+
+import FormInput from "../components/form-container/FormInput";
+import "../styles/pages-style/signin.styles.scss";
 
 const SignIn = () => {
-  const logGoogleUser = async () => {
-    try {
-      const { user } = await signInWithGooglePopup();
-      await createUserFromAuth(user);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  const logGithubUser = async () => {
+  const logInWithGithub = async () => {
     try {
       const { user } = await signInWithGithubPopup();
-      console.log(user);
+
       await createUserFromAuth(user);
     } catch (error) {
       console.log(error.message);
     }
   };
 
+  useEffect(() => {
+    const redirect = async () => {
+      try {
+        const response = await getRedirectResult(auth);
+        if (response) {
+          const { user } = response;
+          await createUserFromAuth(user);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    redirect();
+  }, []);
+
   return (
-    <div>
-      <button onClick={logGoogleUser}> Signin With Google</button>
-      <button onClick={logGithubUser}> Signin With GitHub</button>
+    <div className="container">
+      <div className="signin">
+        <form>
+          <FormInput formInputs={{ label: "Email" }} />
+          <FormInput formInputs={{ label: "Password" }} />
+          <button>Login</button>
+        </form>
+
+        <div className="third-party-signin">
+          <button
+            onClick={() => {
+              signInWithGoogleRedirect();
+            }}
+          >
+            Signin With Google
+          </button>
+          <button onClick={logInWithGithub}> Signin With GitHub</button>
+        </div>
+      </div>
+
+      <SignUp />
     </div>
   );
 };
