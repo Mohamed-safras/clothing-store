@@ -1,29 +1,17 @@
+import { getRedirectResult } from "firebase/auth";
 import React, { useEffect } from "react";
 
-import { getRedirectResult } from "firebase/auth";
 import SignUp from "../components/signup/SignUp";
 import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
 import { auth } from "../utils/firebase/firebase.utils";
 
-import {
-  signInWithGithubPopup,
-  signInWithGoogleRedirect,
-} from "../utils/firebase/SignInMethods";
+import { signInWithGoogleRedirect } from "../utils/firebase/SignInMethods";
 
+import Button from "../components/button-component/Button";
 import FormInput from "../components/form-container/FormInput";
 import "../styles/pages-style/signin.styles.scss";
 
 const SignIn = () => {
-  const logInWithGithub = async () => {
-    try {
-      const { user } = await signInWithGithubPopup();
-
-      await createUserFromAuth(user);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   useEffect(() => {
     const redirect = async () => {
       try {
@@ -41,23 +29,41 @@ const SignIn = () => {
 
   return (
     <div className="container">
-      <div className="signin">
-        <form>
-          <FormInput formInputs={{ label: "Email" }} />
-          <FormInput formInputs={{ label: "Password" }} />
-          <button>Login</button>
-        </form>
+      <div className="sign-in-container">
+        <div className="sign-in-header">
+          <h1>Login</h1>
+          <p>See your growth and get consulting support</p>
 
-        <div className="third-party-signin">
-          <button
-            onClick={() => {
-              signInWithGoogleRedirect();
-            }}
-          >
-            Signin With Google
-          </button>
-          <button onClick={logInWithGithub}> Signin With GitHub</button>
+          <div className="third-party-signin">
+            <Button
+              title="Signin with Google"
+              event={signInWithGoogleRedirect}
+            />
+          </div>
         </div>
+        <div className="or-sign-with-email">
+          <p>or Sign in with Email</p>
+          <div className="border" />
+        </div>
+        <form>
+          <FormInput
+            formInputs={{
+              label: "Email",
+              type: "email",
+              name: "email",
+              required: true,
+            }}
+          />
+          <FormInput
+            formInputs={{
+              label: "Password",
+              type: "password",
+              name: "password",
+              required: true,
+            }}
+          />
+          <Button type="primary" title="Login" />
+        </form>
       </div>
 
       <SignUp />

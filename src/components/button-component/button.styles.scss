@@ -1,0 +1,29 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid rgb(192, 191, 191);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  border-radius: 10px;
+  font-size: 14px;
+
+  font-weight: 600;
+  color: #fff;
+  height: 40px;
+  margin: 15px 0;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+
+  &.primary {
+    background: rgba(2, 18, 45, 0.93);
+  }
+  &.secondary {
+    background: transparent;
+    color: rgb(21, 21, 21);
+  }
+
+  .icon {
+    margin: 10px;
+  }
+}

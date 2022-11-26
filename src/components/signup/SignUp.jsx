@@ -4,7 +4,8 @@ import FormInput from "../form-container/FormInput";
 import { createUserFromAuth } from "../../utils/firebase/createUserFromAuth";
 
 import { signInWithEmailPassword } from "../../utils/firebase/SignInMethods";
-
+import Button from "../button-component/Button";
+import "./sign-up.styles.scss";
 const initialFormFields = {
   displayName: "",
   email: "",
@@ -64,17 +65,18 @@ const SignUp = () => {
   const { displayName, email, password, confirmPassword } = formField;
 
   return (
-    <React.Fragment>
-      {loading && <h2>Loading...</h2>}
-      {status.error && <h2>{status.error}</h2>}
-      {status.success && <h2>{status.success}</h2>}
-      <form style={{ padding: "40px" }} onSubmit={signUpNewUser}>
+    <div className="sign-up-container">
+      <h1>No registed yet?</h1>
+      <p>Create new account</p>
+      <form onSubmit={signUpNewUser}>
+        {loading && <p>Loading...</p>}
+        {status.error && <p>{status.error}</p>}
+        {status.success && <p>{status.success}</p>}
         <FormInput
           formInputs={{
             onChange: handleChange,
             value: displayName,
             type: "text",
-            placeholder: "Display Name",
             name: "displayName",
             label: "Display Name",
             required: true,
@@ -85,7 +87,6 @@ const SignUp = () => {
             onChange: handleChange,
             value: email,
             type: "email",
-            placeholder: "Email",
             name: "email",
             label: "Email",
             required: true,
@@ -96,7 +97,6 @@ const SignUp = () => {
             onChange: handleChange,
             value: password,
             type: "password",
-            placeholder: "Password",
             name: "password",
             label: "Password",
             required: true,
@@ -107,16 +107,15 @@ const SignUp = () => {
             onChange: handleChange,
             value: confirmPassword,
             type: "password",
-            placeholder: "Confirm Password",
             name: "confirmPassword",
             label: "Confirm Password",
             required: true,
           }}
         />
 
-        <button>signup</button>
+        <Button title="Sign Up" />
       </form>
-    </React.Fragment>
+    </div>
   );
 };
 
