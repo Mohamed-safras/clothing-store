@@ -5,7 +5,7 @@ import useHandlers from "../utils/firebase/helpers/handlechange";
 import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
 import { auth } from "../utils/firebase/firebase.utils";
 
-import { signInWithGoogleRedirect } from "../utils/firebase/SignInMethods";
+import { signInWithGoogleRedirect } from "../utils/firebase/firebase/SignInMethods";
 
 import { Link } from "react-router-dom";
 import Button from "../components/button-component/Button";

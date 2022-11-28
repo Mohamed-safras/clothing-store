@@ -1,11 +1,12 @@
+@import "../../styles/global/global.scss";
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  border: 1px solid rgb(192, 191, 191);
+
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 14px;
 
   font-weight: 600;
@@ -16,11 +17,12 @@
   transition: all 150ms ease-in-out;
 
   &.primary {
-    background: rgba(2, 18, 45, 0.93);
+    background: $colorPrimary;
   }
   &.secondary {
     background: transparent;
     color: rgb(21, 21, 21);
+    border: 1px solid rgb(192, 191, 191);
   }
 
   .icon {

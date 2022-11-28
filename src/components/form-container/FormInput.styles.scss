@@ -22,13 +22,10 @@ $main-color: black;
     padding: 10px 12px;
     display: block;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid $sub-color;
     margin: 15px 0;
-
-    &:valid ~ .form-input-label {
-      @include shrinkLabel();
-    }
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 
     &:focus {
       outline: none;

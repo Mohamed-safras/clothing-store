@@ -1,12 +1,16 @@
 import React from "react";
 import "../form-container/FormInput.styles.scss";
-const FormInput = ({ formInputs }) => {
+const FormInput = ({ label, formInputs }) => {
   return (
     <div className="group">
       <input className="form-input" {...formInputs} />
-      <label htmlFor={formInputs.type} className="form-input-label">
-        {formInputs.label}
-      </label>
+      {label && (
+        <label
+          className={`${formInputs.value.length && "shrink"} form-input-label`}
+        >
+          {label}
+        </label>
+      )}
     </div>
   );
 };

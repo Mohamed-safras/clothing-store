@@ -1,22 +1,23 @@
-$colorWhite: #fff;
-$colorBlack: #111;
+$colorWhite: #ffffff;
+$colorBlack: #111111;
+$colorPrimary: #02122ded;
 
-@mixin btn($backgroundColor, $color, $fontsize) {
-  background: $backgroundColor;
-  color: $color;
-  width: 150px;
-  height: 35px;
-  font-size: $fontsize;
-  transition: color 350ms ease-in-out;
-  outline: none;
-  border: 3px solid $colorWhite;
-  text-transform: uppercase;
-  border-radius: 50px;
-  font-weight: 600;
-  fontfamily: arial;
-  cursor: pointer;
-  &:hover {
-    color: $backgroundColor;
-    background: $color;
-  }
-}
+// @mixin btn($backgroundColor, $color, $fontsize) {
+//   background: $backgroundColor;
+//   color: $color;
+//   width: 150px;
+//   height: 35px;
+//   font-size: $fontsize;
+//   transition: color 350ms ease-in-out;
+//   outline: none;
+//   border: 3px solid $colorWhite;
+//   text-transform: uppercase;
+//   border-radius: 50px;
+//   font-weight: 600;
+//   fontfamily: arial;
+//   cursor: pointer;
+//   &:hover {
+//     color: $backgroundColor;
+//     background: $color;
+//   }
+// }

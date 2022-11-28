@@ -1,9 +1,10 @@
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { IconButton } from "@mui/material";
 import React from "react";
 import { BsBagDash } from "react-icons/bs";
 import { Link, NavLink } from "react-router-dom";
 import { ReactComponent as Crown } from "../../assets/crown.svg";
 import "../../styles/navbar/navbar.styles.scss";
-
 const Navbar = () => {
   return (
     <React.Fragment>
@@ -41,7 +42,9 @@ const Navbar = () => {
               className={({ isActive }) => (isActive ? "link active" : "link")}
               to="/cart"
             >
-              <BsBagDash />
+              <IconButton>
+                <ShoppingBagIcon sx={{ color: "#fff", fontSize: 25 }} />
+              </IconButton>
             </NavLink>
           </li>
         </ul>

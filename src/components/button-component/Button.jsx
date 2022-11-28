@@ -4,7 +4,7 @@ import "../button-component/button.styles.scss";
 const Button = ({ title, event, type }) => {
   return (
     <button
-      onClick={() => event()}
+      onClick={event && (() => event())}
       className={`btn ${type === "primary" ? "primary" : "secondary"}`}
     >
       {!type && <FcGoogle className="icon" size={26} />} {title}
