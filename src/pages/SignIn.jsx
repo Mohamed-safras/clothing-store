@@ -1,17 +1,26 @@
 import { getRedirectResult } from "firebase/auth";
 import React, { useEffect } from "react";
+import useHandlers from "../utils/firebase/helpers/handlechange";
 
-import SignUp from "../components/signup/SignUp";
 import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
 import { auth } from "../utils/firebase/firebase.utils";
 
 import { signInWithGoogleRedirect } from "../utils/firebase/SignInMethods";
 
+import { Link } from "react-router-dom";
 import Button from "../components/button-component/Button";
 import FormInput from "../components/form-container/FormInput";
-import "../styles/pages-style/signin.styles.scss";
+import "../styles/pages-style/signin-signup.styles.scss";
+
+const initialFormFields = {
+  email: "",
+  password: "",
+};
 
 const SignIn = () => {
+  const { formField, handleChange, clearFields } =
+    useHandlers(initialFormFields);
+
   useEffect(() => {
     const redirect = async () => {
       try {
@@ -29,34 +38,27 @@ const SignIn = () => {
 
   return (
     <div className="container">
-      <div className="sign-in-container">
+      <div className="signup-signin-container">
         <div className="sign-in-header">
           <h1>Login</h1>
           <p>See your growth and get consulting support</p>
-
-          <div className="third-party-signin">
-            <Button
-              title="Signin with Google"
-              event={signInWithGoogleRedirect}
-            />
-          </div>
-        </div>
-        <div className="or-sign-with-email">
-          <p>or Sign in with Email</p>
-          <div className="border" />
         </div>
         <form>
           <FormInput
+            label="Email"
             formInputs={{
-              label: "Email",
+              onChange: handleChange,
+              value: formField.email,
               type: "email",
               name: "email",
               required: true,
             }}
           />
           <FormInput
+            label="Password"
             formInputs={{
-              label: "Password",
+              onChange: handleChange,
+              value: formField.password,
               type: "password",
               name: "password",
               required: true,
@@ -64,9 +66,21 @@ const SignIn = () => {
           />
           <Button type="primary" title="Login" />
         </form>
-      </div>
+        <div className="or-container">
+          <p>or</p>
+          <div className="border" />
+        </div>
 
-      <SignUp />
+        <div className="third-party-signin">
+          <Button title="Signin with Google" event={signInWithGoogleRedirect} />
+        </div>
+      </div>
+      <div className="link-container">
+        <p>Not registed yet ? </p>
+        <Link className="link" to="/signup">
+          Sign up
+        </Link>
+      </div>
     </div>
   );
 };
