@@ -11,6 +11,7 @@ import SharedLayout from "./pages/SharedLayout";
 import SharedProductLayout from "./pages/SharedProductLayout";
 import Shop from "./pages/Shop";
 import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
   const param = useLocation().pathname.split("/")[2];
@@ -27,6 +28,7 @@ const App = () => {
             <Route path={`:id`} element={<Details />} />
           </Route>
           <Route path="signin" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
