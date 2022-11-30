@@ -1,14 +1,16 @@
 import React from "react";
-import { FcGoogle } from "react-icons/fc";
+
 import "../button-component/button.styles.scss";
-const Button = ({ title, event, type }) => {
+
+const Button = ({ title, event, type, Icon }) => {
   return (
-    <button
+    <div
       onClick={event && (() => event())}
       className={`btn ${type === "primary" ? "primary" : "secondary"}`}
     >
-      {!type && <FcGoogle className="icon" size={26} />} {title}
-    </button>
+      {Icon && <img className="icon" src={Icon} alt="icon" />}
+      <p>{title}</p>
+    </div>
   );
 };
 
