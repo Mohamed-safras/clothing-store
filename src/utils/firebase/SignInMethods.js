@@ -1,4 +1,8 @@
-import { auth, githubProvider, googleProvider } from "../firebase.utils";
+import {
+  auth,
+  githubProvider,
+  googleProvider,
+} from "../firebase/firebase.utils";
 
 import {
   createUserWithEmailAndPassword,

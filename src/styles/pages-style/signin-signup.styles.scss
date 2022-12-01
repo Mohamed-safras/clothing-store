@@ -5,19 +5,19 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: $colorPrimary;
+  background-color: $colorBlack;
   color: $colorWhite;
 
   .wrapper {
-    max-width: 500px;
+    max-width: 600px;
     margin: auto;
-    padding: 30px 15px;
+    padding: 0px 25px;
     width: 100%;
     text-align: center;
 
     .logo {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       display: inline-block;
       $border: 2px;
       position: relative;
@@ -48,16 +48,29 @@
         border-radius: 50%;
         object-fit: contain;
       }
-      .signup-signin-container {
-        width: 100%;
+    }
 
-        .signup-signin-header {
-          h1 {
-            margin: 5px;
-            font-size: 14px;
+    .signup-signin-container {
+      width: 100%;
+
+      .signup-signin-header {
+        h2 {
+          font-size: 24px;
+          text-transform: capitalize;
+
+          @media screen and (max-width: 300px) {
+            font-size: 18px;
+          }
+        }
+        h5 {
+          font-size: 20px;
+          text-transform: capitalize;
+          @media screen and (max-width: 300px) {
+            font-size: 16px;
           }
         }
       }
+
       .or-container {
         position: relative;
         height: 40px;
@@ -65,15 +78,16 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        margin: 15px 0;
+        // margin: 10px 0;
         p {
-          background-color: #fff;
+          background-color: $borderColor;
           padding: 1px 10px;
           margin: 0;
           color: rgb(108, 108, 108);
-          z-index: 1;
+          z-index: 10;
           font-size: 14px;
           font-weight: 400;
+          border-radius: 5px;
         }
         .border {
           position: absolute;
@@ -83,8 +97,8 @@
           width: 100%;
           height: 1.5px;
           opacity: 0.3;
-          background: rgb(108, 108, 108);
-          z-index: -1;
+          background: $text-color;
+          z-index: 1;
         }
       }
     }
@@ -93,10 +107,29 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 12px 0;
+
+      p {
+        font-size: 16px;
+      }
       .link {
-        color: #111;
+        color: $text-color;
         text-decoration: underline;
         margin-left: 5px;
+      }
+    }
+
+    @media screen and (max-width: 300px) {
+      padding: 0px 15px;
+
+      .link-container {
+        margin: 12px 0;
+        p {
+          font-size: 14px;
+        }
+        .link {
+          font-size: 14px;
+        }
       }
     }
   }

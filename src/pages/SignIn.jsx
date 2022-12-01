@@ -1,16 +1,15 @@
 import { getRedirectResult } from "firebase/auth";
 import React, { useEffect } from "react";
-import useHandlers from "../utils/firebase/helpers/handlechange";
-
-import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
-import { auth } from "../utils/firebase/firebase.utils";
-
-import { signInWithGoogleRedirect } from "../utils/firebase/firebase/SignInMethods";
-
 import { Link } from "react-router-dom";
+import Logo from "../assets/clothing-logo.jpg";
+import GoogleIcon from "../assets/google.svg";
 import Button from "../components/button-component/Button";
 import FormInput from "../components/form-container/FormInput";
 import "../styles/pages-style/signin-signup.styles.scss";
+import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
+import { auth } from "../utils/firebase/firebase.utils";
+import { signInWithGoogleRedirect } from "../utils/firebase/SignInMethods";
+import useHandlers from "../utils/helpers/handlechange";
 
 const initialFormFields = {
   email: "",
@@ -38,48 +37,57 @@ const SignIn = () => {
 
   return (
     <div className="container">
-      <div className="signup-signin-container">
-        <div className="sign-in-header">
-          <h1>Login</h1>
-          <p>See your growth and get consulting support</p>
+      <div className="wrapper">
+        <div className="logo">
+          <img src={Logo} alt="crown-logo" />
         </div>
-        <form>
-          <FormInput
-            label="Email"
-            formInputs={{
-              onChange: handleChange,
-              value: formField.email,
-              type: "email",
-              name: "email",
-              required: true,
-            }}
-          />
-          <FormInput
-            label="Password"
-            formInputs={{
-              onChange: handleChange,
-              value: formField.password,
-              type: "password",
-              name: "password",
-              required: true,
-            }}
-          />
-          <Button type="primary" title="Login" />
-        </form>
-        <div className="or-container">
-          <p>or</p>
-          <div className="border" />
-        </div>
+        <div className="signup-signin-container">
+          <div className="signup-signin-header">
+            <h2>Let's sign you in.</h2>
+            <h5>You've been missed!</h5>
+          </div>
+          <form>
+            <FormInput
+              label="Email"
+              formInputs={{
+                onChange: handleChange,
+                value: formField.email,
+                type: "email",
+                name: "email",
+                required: true,
+              }}
+            />
+            <FormInput
+              label="Password"
+              formInputs={{
+                onChange: handleChange,
+                value: formField.password,
+                type: "password",
+                name: "password",
+                required: true,
+              }}
+            />
+            <Button type="primary" title="Login" />
+          </form>
+          <div className="or-container">
+            <p>or</p>
+            <div className="border" />
+          </div>
 
-        <div className="third-party-signin">
-          <Button title="Signin with Google" event={signInWithGoogleRedirect} />
+          <div className="third-party-signin">
+            <Button
+              Icon={GoogleIcon}
+              title="Signin with Google"
+              event={signInWithGoogleRedirect}
+            />
+          </div>
         </div>
-      </div>
-      <div className="link-container">
-        <p>Not registed yet ? </p>
-        <Link className="link" to="/signup">
-          Sign up
-        </Link>
+        <div className="link-container">
+          <p>Not registed yet ? </p>
+          <Link className="link" to="/signup">
+            Sign up
+          </Link>
+        </div>
       </div>
     </div>
   );
