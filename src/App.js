@@ -27,10 +27,11 @@ const App = () => {
             <Route index element={<Products />} />
             <Route path={`:id`} element={<Details />} />
           </Route>
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
+
           <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="signin" element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
       </Routes>
     </React.Fragment>
   );
