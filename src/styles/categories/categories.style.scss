@@ -5,19 +5,23 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
+  align-items: center;
+  padding: 0 10px;
   a {
     text-decoration: none;
   }
   .category-container {
     min-width: 240px;
-    height: 240px;
-    flex: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    height: 220px;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    margin: 0 7.5px 15px;
+
+    margin: 5px;
     overflow: hidden;
 
     &:hover {
@@ -38,11 +42,11 @@
     }
 
     &:first-child {
-      margin-right: 7.5px;
+      margin-right: 5px;
     }
 
     &:last-child {
-      margin-left: 7.5px;
+      margin-left: 5px;
     }
   }
 }

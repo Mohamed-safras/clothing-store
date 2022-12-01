@@ -1,48 +1,103 @@
+@import "../global/global.scss";
 .container {
-  max-width: 550px;
-  margin: auto;
-  padding: 10px 15px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: $colorPrimary;
+  color: $colorWhite;
 
-  .signup-signin-container {
-    .or-container {
+  .wrapper {
+    max-width: 500px;
+    margin: auto;
+    padding: 30px 15px;
+    width: 100%;
+    text-align: center;
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      $border: 2px;
       position: relative;
-      height: 40px;
+      color: #fff;
+      z-index: 10;
+      background-clip: padding-box; /* !importanté */
+      border: solid $border transparent; /* !importanté */
+      border-radius: 50%;
+      padding: 2px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        padding: 10px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        margin: -$border; /* !importanté */
+        border-radius: inherit; /* !importanté */
+        background: linear-gradient(to top, rgb(200, 23, 23), $colorBlue);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: contain;
+      }
+      .signup-signin-container {
+        width: 100%;
+
+        .signup-signin-header {
+          h1 {
+            margin: 5px;
+            font-size: 14px;
+          }
+        }
+      }
+      .or-container {
+        position: relative;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 15px 0;
+        p {
+          background-color: #fff;
+          padding: 1px 10px;
+          margin: 0;
+          color: rgb(108, 108, 108);
+          z-index: 1;
+          font-size: 14px;
+          font-weight: 400;
+        }
+        .border {
+          position: absolute;
+          top: 20px;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 1.5px;
+          opacity: 0.3;
+          background: rgb(108, 108, 108);
+          z-index: -1;
+        }
+      }
+    }
+
+    .link-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      margin: 15px 0;
-      p {
-        background-color: #fff;
-        padding: 1px 10px;
-        margin: 0;
-        color: rgb(108, 108, 108);
-        z-index: 1;
-        font-size: 14px;
-        font-weight: 400;
+      .link {
+        color: #111;
+        text-decoration: underline;
+        margin-left: 5px;
       }
-      .border {
-        position: absolute;
-        top: 20px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 1.5px;
-        opacity: 0.3;
-        background: rgb(108, 108, 108);
-        z-index: -1;
-      }
-    }
-  }
-
-  .link-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .link {
-      color: #111;
-      text-decoration: underline;
-      margin-left: 5px;
     }
   }
 }

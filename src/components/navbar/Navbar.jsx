@@ -13,7 +13,7 @@ const Navbar = () => {
 
       <NavLinks />
 
-      <IconButton>
+      <IconButton className="menu">
         <MenuIcon color="primary" sx={{ fontSize: 40 }} />
       </IconButton>
     </nav>
