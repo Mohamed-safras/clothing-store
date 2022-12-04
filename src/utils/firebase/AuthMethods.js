@@ -1,11 +1,8 @@
-import {
-  auth,
-  githubProvider,
-  googleProvider,
-} from "../firebase/firebase.utils";
+import { auth, githubProvider, googleProvider } from "./firebase.utils";
 
 import {
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signInWithRedirect,
 } from "firebase/auth";
@@ -31,8 +28,13 @@ export const signInWithGithubPopup = () =>
 
 // Email auth
 
-export const signInWithEmailPassword = (email, password) =>
+export const createAuthUserWithEmailAndPassword = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password);
+
+export const signAuthInWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await signInWithEmailAndPassword(auth, email, password);
+};
 
 // sign in with redirect
 

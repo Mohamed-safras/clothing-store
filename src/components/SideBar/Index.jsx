@@ -1,9 +1,14 @@
-import React from 'react'
-
-const SideBar = () => {
+import React from "react";
+import NavLinks from "../navbar/NavLinks";
+import NavRight from "../navbar/NavRight";
+import "./sidebar.styles.scss";
+const SideBar = ({ isOpen }) => {
   return (
-    <div>SideBar</div>
-  )
-}
+    <div className={`sidebar-container ${isOpen ? "active" : ""}`}>
+      {/*<NavLinks />
+  <NavRight />*/}
+    </div>
+  );
+};
 
-export default SideBar
+export default SideBar;

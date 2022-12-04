@@ -1,12 +1,18 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
+import SideBar from "../components/SideBar/Index";
 
 const SharedLayout = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleTopBar = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <Fragment>
-      <Navbar />
-
+      <Navbar toggleTopBar={toggleTopBar} />
+      <SideBar isOpen={isOpen} />
       <Outlet />
     </Fragment>
   );

@@ -6,9 +6,12 @@ import GoogleIcon from "../assets/google.svg";
 import Button from "../components/button-component/Button";
 import FormInput from "../components/form-container/FormInput";
 import "../styles/pages-style/signin-signup.styles.scss";
+import {
+  signAuthInWithEmailAndPassword,
+  signInWithGoogleRedirect,
+} from "../utils/firebase/AuthMethods";
 import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
 import { auth } from "../utils/firebase/firebase.utils";
-import { signInWithGoogleRedirect } from "../utils/firebase/SignInMethods";
 import useHandlers from "../utils/helpers/handlechange";
 
 const initialFormFields = {
@@ -17,8 +20,13 @@ const initialFormFields = {
 };
 
 const SignIn = () => {
-  const { formField, handleChange, clearFields } =
-    useHandlers(initialFormFields);
+  const {
+    formField,
+    handleChange,
+    togglePassword,
+    isPasswordShown,
+    clearFields,
+  } = useHandlers(initialFormFields);
 
   useEffect(() => {
     const redirect = async () => {
@@ -35,6 +43,19 @@ const SignIn = () => {
     redirect();
   }, []);
 
+  const { email, password } = formField;
+
+  const signIn = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await signAuthInWithEmailAndPassword(email, password);
+      console.log(response);
+      clearFields();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -46,7 +67,7 @@ const SignIn = () => {
             <h2>Let's sign you in.</h2>
             <h5>You've been missed!</h5>
           </div>
-          <form>
+          <form onSubmit={signIn}>
             <FormInput
               label="Email"
               formInputs={{
@@ -59,15 +80,17 @@ const SignIn = () => {
             />
             <FormInput
               label="Password"
+              isPasswordShown={isPasswordShown}
+              togglePassword={togglePassword}
               formInputs={{
                 onChange: handleChange,
                 value: formField.password,
-                type: "password",
+                type: !isPasswordShown ? "password" : "text",
                 name: "password",
                 required: true,
               }}
             />
-            <Button type="primary" title="Login" />
+            <Button type="submit" style_type="primary" title="Login" />
           </form>
           <div className="or-container">
             <p>or</p>
