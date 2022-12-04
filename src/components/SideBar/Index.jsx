@@ -1,6 +1,6 @@
 import React from "react";
 import NavLinks from "../navbar/NavLinks";
-import NavRight from "../navbar/NavRight";
+
 import "./sidebar.styles.scss";
 const SideBar = ({ isOpen }) => {
   return (
