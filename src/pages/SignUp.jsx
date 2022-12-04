@@ -6,11 +6,11 @@ import GoogleIcon from "../assets/google.svg";
 import Button from "../components/button-component/Button";
 import FormInput from "../components/form-container/FormInput";
 import "../styles/pages-style/signin-signup.styles.scss";
-import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
 import {
-  signInWithEmailPassword,
+  createAuthUserWithEmailAndPassword,
   signInWithGoogleRedirect,
-} from "../utils/firebase/SignInMethods";
+} from "../utils/firebase/AuthMethods";
+import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
 import useHandlers from "../utils/helpers/handlechange";
 
 const initialFormFields = {
@@ -21,8 +21,15 @@ const initialFormFields = {
 };
 
 const SignUp = () => {
-  const { formField, handleChange, clearFields } =
-    useHandlers(initialFormFields);
+  const {
+    formField,
+    handleChange,
+    clearFields,
+    togglePassword,
+    isPasswordShown,
+    isConfirmPasswordShown,
+    toggleConfirmPassword,
+  } = useHandlers(initialFormFields);
 
   const [status, setStatus] = useState({
     error: "",
@@ -45,7 +52,10 @@ const SignUp = () => {
       return;
     }
     try {
-      const { user } = await signInWithEmailPassword(email, password);
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
       await createUserFromAuth(user, { displayName });
 
       clearFields();
@@ -62,6 +72,7 @@ const SignUp = () => {
         ...status,
         error: error.code,
       }));
+      console.log(error.message);
     }
   };
 
@@ -77,15 +88,7 @@ const SignUp = () => {
             <h5>Create new account</h5>
           </div>
           <form onSubmit={signUpNewUser}>
-            <div className="message">
-              {loading && <p>Loading...</p>}
-              {status.error && <p>{status.error}</p>}
-              {status.success && (
-                <Alert onClose={() => {}}>
-                  This is a success alert — check it out!
-                </Alert>
-              )}
-            </div>
+            <div className="message">{loading && <p>Loading...</p>}</div>
             <FormInput
               label="Display Name"
               formInputs={{
@@ -108,26 +111,30 @@ const SignUp = () => {
             />
             <FormInput
               label="Password"
+              togglePassword={togglePassword}
+              isPasswordShown={isPasswordShown}
               formInputs={{
                 onChange: handleChange,
                 value: password,
-                type: "password",
+                type: !isPasswordShown ? "password" : "text",
                 name: "password",
                 required: true,
               }}
             />
             <FormInput
               label="Confirm Password"
+              togglePassword={toggleConfirmPassword}
+              isPasswordShown={isConfirmPasswordShown}
               formInputs={{
                 onChange: handleChange,
                 value: confirmPassword,
-                type: "password",
+                type: !isConfirmPasswordShown ? "password" : "text",
                 name: "confirmPassword",
                 required: true,
               }}
             />
 
-            <Button type="primary" title="Sign Up" />
+            <Button type="submit" style_type="primary" title="Sign Up" />
           </form>
           <div className="or-container">
             <p>or</p>

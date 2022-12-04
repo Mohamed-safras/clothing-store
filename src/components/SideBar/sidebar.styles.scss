@@ -1,0 +1,22 @@
+@import "../../styles/global/global.scss";
+.sidebar-container {
+  width: 100%;
+  position: fixed;
+  background: $colorPrimary;
+  top: 70px;
+  height: 0;
+  z-index: 100;
+  overflow: hidden;
+  transition: height 150ms ease-in-out;
+  color: $colorWhite;
+
+  &.active {
+    height: 180px;
+  }
+
+  @media screen and (min-width: 768px) {
+    &.active {
+      height: 0;
+    }
+  }
+}
