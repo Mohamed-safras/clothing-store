@@ -5,7 +5,6 @@ import { IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import { ReactComponent as Crown } from "../../assets/crown.svg";
 
-import NavLinks from "./NavLinks";
 const Navbar = () => {
   return (
     <nav className="nav-bar">
