@@ -1,9 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 import CategoryItem from "../components/categories/CategoryItem";
-import "../styles/categories/categories.style.scss";
-
+// import "../styles/categories/categories.style.scss";
+import "../components/categories/categories.style.scss";
 const Products = () => {
   const [items, setItems] = useState([]);
   const param = useLocation().pathname.split("/")[2];

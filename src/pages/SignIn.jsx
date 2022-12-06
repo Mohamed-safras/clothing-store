@@ -1,8 +1,8 @@
 import { getRedirectResult } from "firebase/auth";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import Logo from "../assets/clothing-logo.jpg";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleIcon from "../assets/google.svg";
+import Logo from "../assets/logo.png";
 import Button from "../components/button-component/Button";
 import FormInput from "../components/form-container/FormInput";
 import "../styles/pages-style/signin-signup.styles.scss";
@@ -20,6 +20,7 @@ const initialFormFields = {
 };
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const {
     formField,
     handleChange,
@@ -36,9 +37,7 @@ const SignIn = () => {
           const { user } = response;
           await createUserFromAuth(user);
         }
-      } catch (error) {
-        console.log(error.message);
-      }
+      } catch (error) {}
     };
     redirect();
   }, []);
@@ -50,9 +49,20 @@ const SignIn = () => {
     try {
       const response = await signAuthInWithEmailAndPassword(email, password);
       console.log(response);
+
       clearFields();
+      navigate("/");
     } catch (error) {
-      console.log(error.message);
+      switch (error.code) {
+        case "auth/wrong-password":
+          console.log("invalid email or password");
+          break;
+        case "auth.user-not-found":
+          console.log("user not found");
+          break;
+        default:
+          console.log(error);
+      }
     }
   };
 
@@ -99,6 +109,7 @@ const SignIn = () => {
 
           <div className="third-party-signin">
             <Button
+              type="button"
               Icon={GoogleIcon}
               title="Signin with Google"
               event={signInWithGoogleRedirect}

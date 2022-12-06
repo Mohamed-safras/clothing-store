@@ -2,16 +2,16 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { IconButton } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import "./navlinks.stles.scss";
 const NavLinks = () => {
   return (
-    <ul className="nav-links">
+    <ul className="navbar-links">
       <li className="nav-link">
         <NavLink
           className={({ isActive }) => (isActive ? "link active" : "link")}
           to="/shop"
         >
-          SHOP
+          Shop
         </NavLink>
       </li>
       <li className="nav-link">
@@ -19,7 +19,7 @@ const NavLinks = () => {
           className={({ isActive }) => (isActive ? "link active" : "link")}
           to="/contact"
         >
-          CONTACT
+          Contact
         </NavLink>
       </li>
       <li className="nav-link">
@@ -27,7 +27,7 @@ const NavLinks = () => {
           className={({ isActive }) => (isActive ? "link active" : "link")}
           to="/signin"
         >
-          SIGN IN
+          Sign In
         </NavLink>
       </li>
       <li className="nav-link">

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/categories/categoryItem.styles.scss";
+import "./categoryItem.styles.scss";
 const CategoryItem = ({ title, imageUrl }) => {
   return (
     <div className="category-card">

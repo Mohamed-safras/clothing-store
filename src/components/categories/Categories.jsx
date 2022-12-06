@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/categories/categories.style.scss";
+import "./categories.style.scss";
 import CategoryItem from "./CategoryItem";
 
 const Categories = () => {
