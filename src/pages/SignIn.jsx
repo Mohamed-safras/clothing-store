@@ -1,10 +1,12 @@
 import { getRedirectResult } from "firebase/auth";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GoogleIcon from "../assets/google.svg";
 import Logo from "../assets/logo.png";
 import Button from "../components/button-component/Button";
 import FormInput from "../components/form-container/FormInput";
+import { UserContext } from "../context/user.context";
+
 import "../styles/pages-style/signin-signup.styles.scss";
 import {
   signAuthInWithEmailAndPassword,
@@ -13,14 +15,15 @@ import {
 import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
 import { auth } from "../utils/firebase/firebase.utils";
 import useHandlers from "../utils/helpers/handlechange";
-
 const initialFormFields = {
   email: "",
   password: "",
 };
 
 const SignIn = () => {
-  const navigate = useNavigate();
+  const { setCurrentUser } = useContext(UserContext);
+
+  const navigator = useNavigate();
   const {
     formField,
     handleChange,
@@ -29,29 +32,17 @@ const SignIn = () => {
     clearFields,
   } = useHandlers(initialFormFields);
 
-  useEffect(() => {
-    const redirect = async () => {
-      try {
-        const response = await getRedirectResult(auth);
-        if (response) {
-          const { user } = response;
-          await createUserFromAuth(user);
-        }
-      } catch (error) {}
-    };
-    redirect();
-  }, []);
-
   const { email, password } = formField;
 
   const signIn = async (event) => {
     event.preventDefault();
     try {
-      const response = await signAuthInWithEmailAndPassword(email, password);
-      console.log(response);
+      const { user } = await signAuthInWithEmailAndPassword(email, password);
+      console.log(user);
+      setCurrentUser(user);
 
       clearFields();
-      navigate("/");
+      navigator("/");
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
@@ -65,6 +56,25 @@ const SignIn = () => {
       }
     }
   };
+
+  useEffect(() => {
+    const redirect = async () => {
+      try {
+        const response = await getRedirectResult(auth);
+        if (response) {
+          const { user } = response;
+          await createUserFromAuth(user);
+
+          setCurrentUser(user);
+
+          navigator("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    redirect();
+  }, [navigator, setCurrentUser]);
 
   return (
     <div className="container">

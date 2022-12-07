@@ -1,5 +1,3 @@
-import React from "react";
-
 import "../button-component/button.styles.scss";
 
 const Button = ({ title, event, style_type, Icon, ...otherprops }) => {
