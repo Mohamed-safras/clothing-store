@@ -1,0 +1,13 @@
+.shop-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .products-container {
+    flex: 0.4;
+  }
+
+  .products-details {
+    flex: 0.3;
+  }
+}

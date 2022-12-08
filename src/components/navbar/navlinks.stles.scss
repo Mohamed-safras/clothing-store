@@ -1,5 +1,10 @@
+@import "../../styles/global/global.scss";
 .navbar-links {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  .nav-link {
+    margin: 0 10px;
+    position: relative;
+  }
 }

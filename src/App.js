@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react";
-import { Route, Routes, useLocation, useParams } from "react-router-dom";
+import React, { useContext } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import { UserContext } from "./context/user.context";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import Details from "./pages/Details.";
+import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
@@ -23,6 +24,7 @@ const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="favorites" element={<Favorites />} />
         <Route path="shop" element={<Shop />} />
         <Route path="contact" element={<Contact />} />
         <Route path={`products/${param}`} element={<SharedProductLayout />}>

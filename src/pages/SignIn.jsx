@@ -15,6 +15,10 @@ import {
 import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
 import { auth } from "../utils/firebase/firebase.utils";
 import useHandlers from "../utils/helpers/handlechange";
+
+import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 const initialFormFields = {
   email: "",
   password: "",
@@ -90,6 +94,7 @@ const SignIn = () => {
           <form onSubmit={signIn}>
             <FormInput
               label="Email"
+              Icon1={AlternateEmailOutlinedIcon}
               formInputs={{
                 onChange: handleChange,
                 value: formField.email,
@@ -102,6 +107,8 @@ const SignIn = () => {
               label="Password"
               isPasswordShown={isPasswordShown}
               togglePassword={togglePassword}
+              Icon1={VisibilityIcon}
+              Icon2={VisibilityOffIcon}
               formInputs={{
                 onChange: handleChange,
                 value: formField.password,
