@@ -6,6 +6,7 @@ $colorPrimary: #02122ded;
 $colorBlue: #1976d2;
 $text-color: #a1a0a5;
 $search-color: #f6f6f6;
+$box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 
 // @mixin btn($backgroundColor, $color, $fontsize) {
 //   background: $backgroundColor;
@@ -39,7 +40,7 @@ $search-color: #f6f6f6;
     background-clip: padding-box; /* !importanté */
     border: solid $border transparent; /* !importanté */
     border-radius: 50%;
-    // padding: 2px;
+    padding: 2px;
 
     &:before {
       content: "";
@@ -52,7 +53,7 @@ $search-color: #f6f6f6;
       z-index: -1;
       margin: -$border; /* !importanté */
       border-radius: inherit; /* !importanté */
-      background: linear-gradient(to top, $color1, $color2);
+      background: linear-gradient(315deg, $color1, $color2);
     }
 
     img {

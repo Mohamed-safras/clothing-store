@@ -1,43 +1,26 @@
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { IconButton } from "@mui/material";
-import React from "react";
+// import { IconButton } from "@mui/material";
+// import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-
+// import { UserContext } from "../../context/user.context";
+import "./navlinks.stles.scss";
 const NavLinks = () => {
   return (
-    <ul className="nav-links">
+    <ul className="navbar-links">
       <li className="nav-link">
         <NavLink
-          className={({ isActive }) => (isActive ? "link active" : "link")}
+          className={({ isActive }) => (isActive ? "active" : undefined)}
           to="/shop"
         >
-          SHOP
+          Shop
         </NavLink>
       </li>
       <li className="nav-link">
         <NavLink
-          className={({ isActive }) => (isActive ? "link active" : "link")}
+          className={({ isActive }) => (isActive ? "active" : undefined)}
           to="/contact"
         >
-          CONTACT
-        </NavLink>
-      </li>
-      <li className="nav-link">
-        <NavLink
-          className={({ isActive }) => (isActive ? "link active" : "link")}
-          to="/signin"
-        >
-          SIGN IN
-        </NavLink>
-      </li>
-      <li className="nav-link">
-        <NavLink
-          className={({ isActive }) => (isActive ? "link active" : "link")}
-          to="/cart"
-        >
-          <IconButton>
-            <ShoppingBagIcon color="primary" sx={{ fontSize: 25 }} />
-          </IconButton>
+          Contact
         </NavLink>
       </li>
     </ul>

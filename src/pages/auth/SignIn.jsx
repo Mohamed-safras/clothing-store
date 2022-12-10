@@ -1,25 +1,33 @@
 import { getRedirectResult } from "firebase/auth";
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import Logo from "../assets/clothing-logo.jpg";
-import GoogleIcon from "../assets/google.svg";
-import Button from "../components/button-component/Button";
-import FormInput from "../components/form-container/FormInput";
-import "../styles/pages-style/signin-signup.styles.scss";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import GoogleIcon from "../../assets/google.svg";
+import Logo from "../../assets/logo.png";
+import Button from "../../components/button-component/Button";
+import FormInput from "../../components/form-container/FormInput";
+import { UserContext } from "../../context/user.context";
+
 import {
   signAuthInWithEmailAndPassword,
   signInWithGoogleRedirect,
-} from "../utils/firebase/AuthMethods";
-import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
-import { auth } from "../utils/firebase/firebase.utils";
-import useHandlers from "../utils/helpers/handlechange";
+} from "../../utils/firebase/AuthMethods";
+import { createUserFromAuth } from "../../utils/firebase/createUserFromAuth";
+import { auth } from "../../utils/firebase/firebase.utils";
+import useHandlers from "../../utils/helpers/handlechange";
+import "../auth/auth.styles.scss";
 
+import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 const initialFormFields = {
   email: "",
   password: "",
 };
 
 const SignIn = () => {
+  const { setCurrentUser } = useContext(UserContext);
+
+  const navigator = useNavigate();
   const {
     formField,
     handleChange,
@@ -28,6 +36,31 @@ const SignIn = () => {
     clearFields,
   } = useHandlers(initialFormFields);
 
+  const { email, password } = formField;
+
+  const signIn = async (event) => {
+    event.preventDefault();
+    try {
+      const { user } = await signAuthInWithEmailAndPassword(email, password);
+      console.log(user);
+      setCurrentUser(user);
+
+      clearFields();
+      navigator("/");
+    } catch (error) {
+      switch (error.code) {
+        case "auth/wrong-password":
+          console.log("invalid email or password");
+          break;
+        case "auth.user-not-found":
+          console.log("user not found");
+          break;
+        default:
+          console.log(error);
+      }
+    }
+  };
+
   useEffect(() => {
     const redirect = async () => {
       try {
@@ -35,26 +68,17 @@ const SignIn = () => {
         if (response) {
           const { user } = response;
           await createUserFromAuth(user);
+
+          setCurrentUser(user);
+
+          navigator("/");
         }
       } catch (error) {
-        console.log(error.message);
+        console.log(error);
       }
     };
     redirect();
-  }, []);
-
-  const { email, password } = formField;
-
-  const signIn = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await signAuthInWithEmailAndPassword(email, password);
-      console.log(response);
-      clearFields();
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  }, [navigator, setCurrentUser]);
 
   return (
     <div className="container">
@@ -70,6 +94,7 @@ const SignIn = () => {
           <form onSubmit={signIn}>
             <FormInput
               label="Email"
+              Icon1={AlternateEmailOutlinedIcon}
               formInputs={{
                 onChange: handleChange,
                 value: formField.email,
@@ -82,6 +107,8 @@ const SignIn = () => {
               label="Password"
               isPasswordShown={isPasswordShown}
               togglePassword={togglePassword}
+              Icon1={VisibilityIcon}
+              Icon2={VisibilityOffIcon}
               formInputs={{
                 onChange: handleChange,
                 value: formField.password,
@@ -99,6 +126,7 @@ const SignIn = () => {
 
           <div className="third-party-signin">
             <Button
+              type="button"
               Icon={GoogleIcon}
               title="Signin with Google"
               event={signInWithGoogleRedirect}

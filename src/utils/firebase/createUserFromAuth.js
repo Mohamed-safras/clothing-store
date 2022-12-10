@@ -10,6 +10,7 @@ export const createUserFromAuth = async (userAuth, additionalInfo = {}) => {
 
   if (!userSnap.exists()) {
     const { displayName, email } = userAuth;
+    console.log(displayName);
     const timestamp = new Date();
     try {
       await setDoc(userDocRef, {

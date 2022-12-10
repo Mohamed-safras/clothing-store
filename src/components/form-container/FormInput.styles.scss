@@ -29,7 +29,7 @@ $main-color: black;
     width: 100%;
     border-radius: 8px;
     border: 2px solid $borderColor;
-    margin: 14px 0;
+    margin-bottom: 14px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 
     &:focus {
@@ -60,7 +60,7 @@ $main-color: black;
       @include shrinkLabel();
     }
   }
-  .eye-icon {
+  .icon {
     position: absolute;
     cursor: pointer;
     right: 10px;

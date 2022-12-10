@@ -1,18 +1,19 @@
-import Alert from "@mui/material/Alert";
+import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/clothing-logo.jpg";
-import GoogleIcon from "../assets/google.svg";
-import Button from "../components/button-component/Button";
-import FormInput from "../components/form-container/FormInput";
-import "../styles/pages-style/signin-signup.styles.scss";
+import GoogleIcon from "../../assets/google.svg";
+import Logo from "../../assets/logo.png";
+import Button from "../../components/button-component/Button";
+import FormInput from "../../components/form-container/FormInput";
 import {
   createAuthUserWithEmailAndPassword,
   signInWithGoogleRedirect,
-} from "../utils/firebase/AuthMethods";
-import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
-import useHandlers from "../utils/helpers/handlechange";
-
+} from "../../utils/firebase/AuthMethods";
+import { createUserFromAuth } from "../../utils/firebase/createUserFromAuth";
+import useHandlers from "../../utils/helpers/handlechange";
+import "../auth/auth.styles.scss";
 const initialFormFields = {
   displayName: "",
   email: "",
@@ -56,7 +57,7 @@ const SignUp = () => {
         email,
         password
       );
-      await createUserFromAuth(user, { displayName });
+      await createUserFromAuth(user, { displayName: "Safras" });
 
       clearFields();
 
@@ -91,6 +92,7 @@ const SignUp = () => {
             <div className="message">{loading && <p>Loading...</p>}</div>
             <FormInput
               label="Display Name"
+              // Icon1={AlternateEmailOutlinedIcon}
               formInputs={{
                 onChange: handleChange,
                 value: displayName,
@@ -101,6 +103,7 @@ const SignUp = () => {
             />
             <FormInput
               label="Email"
+              Icon1={AlternateEmailOutlinedIcon}
               formInputs={{
                 onChange: handleChange,
                 value: email,
@@ -111,11 +114,13 @@ const SignUp = () => {
             />
             <FormInput
               label="Password"
-              togglePassword={togglePassword}
               isPasswordShown={isPasswordShown}
+              togglePassword={togglePassword}
+              Icon1={VisibilityIcon}
+              Icon2={VisibilityOffIcon}
               formInputs={{
                 onChange: handleChange,
-                value: password,
+                value: formField.password,
                 type: !isPasswordShown ? "password" : "text",
                 name: "password",
                 required: true,
@@ -123,6 +128,8 @@ const SignUp = () => {
             />
             <FormInput
               label="Confirm Password"
+              Icon1={VisibilityIcon}
+              Icon2={VisibilityOffIcon}
               togglePassword={toggleConfirmPassword}
               isPasswordShown={isConfirmPasswordShown}
               formInputs={{
