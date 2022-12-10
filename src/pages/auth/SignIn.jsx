@@ -1,20 +1,20 @@
 import { getRedirectResult } from "firebase/auth";
 import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import GoogleIcon from "../assets/google.svg";
-import Logo from "../assets/logo.png";
-import Button from "../components/button-component/Button";
-import FormInput from "../components/form-container/FormInput";
-import { UserContext } from "../context/user.context";
+import GoogleIcon from "../../assets/google.svg";
+import Logo from "../../assets/logo.png";
+import Button from "../../components/button-component/Button";
+import FormInput from "../../components/form-container/FormInput";
+import { UserContext } from "../../context/user.context";
 
-import "../styles/pages-style/signin-signup.styles.scss";
 import {
   signAuthInWithEmailAndPassword,
   signInWithGoogleRedirect,
-} from "../utils/firebase/AuthMethods";
-import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
-import { auth } from "../utils/firebase/firebase.utils";
-import useHandlers from "../utils/helpers/handlechange";
+} from "../../utils/firebase/AuthMethods";
+import { createUserFromAuth } from "../../utils/firebase/createUserFromAuth";
+import { auth } from "../../utils/firebase/firebase.utils";
+import useHandlers from "../../utils/helpers/handlechange";
+import "../auth/auth.styles.scss";
 
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";

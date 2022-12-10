@@ -3,17 +3,17 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import GoogleIcon from "../assets/google.svg";
-import Logo from "../assets/logo.png";
-import Button from "../components/button-component/Button";
-import FormInput from "../components/form-container/FormInput";
-import "../styles/pages-style/signin-signup.styles.scss";
+import GoogleIcon from "../../assets/google.svg";
+import Logo from "../../assets/logo.png";
+import Button from "../../components/button-component/Button";
+import FormInput from "../../components/form-container/FormInput";
 import {
   createAuthUserWithEmailAndPassword,
   signInWithGoogleRedirect,
-} from "../utils/firebase/AuthMethods";
-import { createUserFromAuth } from "../utils/firebase/createUserFromAuth";
-import useHandlers from "../utils/helpers/handlechange";
+} from "../../utils/firebase/AuthMethods";
+import { createUserFromAuth } from "../../utils/firebase/createUserFromAuth";
+import useHandlers from "../../utils/helpers/handlechange";
+import "../auth/auth.styles.scss";
 const initialFormFields = {
   displayName: "",
   email: "",
@@ -57,7 +57,7 @@ const SignUp = () => {
         email,
         password
       );
-      await createUserFromAuth(user, { displayName });
+      await createUserFromAuth(user, { displayName: "Safras" });
 
       clearFields();
 

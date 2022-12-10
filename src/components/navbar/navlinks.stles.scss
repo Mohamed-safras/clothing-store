@@ -2,9 +2,17 @@
 .navbar-links {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   .nav-link {
     margin: 0 10px;
     position: relative;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    .nav-link {
+      margin: 10px 0px;
+      position: relative;
+    }
   }
 }

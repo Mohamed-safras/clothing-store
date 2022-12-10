@@ -6,9 +6,11 @@ import "./card.styles.scss";
 const Card = () => {
   return (
     <div className="card-container">
-      <IconCheckboxes />
       <div className="product-image">
-        <img src="https://i.ibb.co/px2tCc3/jackets.png" alt="" />
+        <img
+          src="https://cdn.shopify.com/s/files/1/0419/1525/products/1024x1024-Men-Jacket-Roadster-BlackCoffee-102221-1.jpg?v=1635196923"
+          alt=""
+        />
       </div>
       <p className="product-title">Monstera DK Var</p>
       <div className="ratings"></div>
@@ -17,14 +19,15 @@ const Card = () => {
           <p>price</p>
           <span>$325</span>
         </div>
-        <div className="btn">
-          <Button
-            style={{ background: "white", color: "black" }}
-            variant="contained"
-          >
-            Add To Cart
-          </Button>
-        </div>
+        <Button
+          style={{
+            background: "white",
+            color: "black",
+          }}
+          variant="contained"
+        >
+          Add To Cart
+        </Button>
       </div>
     </div>
   );

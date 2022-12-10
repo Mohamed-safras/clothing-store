@@ -13,7 +13,7 @@ const SharedLayout = () => {
   return (
     <Fragment>
       <Navbar toggleTopBar={toggleTopBar} />
-      <SideBar isOpen={isOpen} />
+      <SideBar isOpen={isOpen} toggleTopBar={toggleTopBar} />
       <Outlet />
     </Fragment>
   );

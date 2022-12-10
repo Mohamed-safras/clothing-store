@@ -4,6 +4,7 @@
   background: $colorBlack;
   padding: 10px 40px;
   color: $colorWhite;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,7 +27,7 @@
     color: $text-color;
     &::before {
       position: absolute;
-      bottom: -20px;
+      bottom: -21px;
       right: 0;
       left: 0;
       width: 100%;
@@ -55,6 +56,9 @@
       display: block;
     }
     .nav-links {
+      display: none;
+    }
+    .nav-right {
       display: none;
     }
   }

@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import { UserContext } from "./context/user.context";
+import SignIn from "./pages/auth/SignIn";
+import SignUp from "./pages/auth/SignUp";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import Details from "./pages/Details.";
@@ -11,14 +13,12 @@ import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
 import SharedLayout from "./pages/SharedLayout";
 import SharedProductLayout from "./pages/SharedProductLayout";
-import Shop from "./pages/Shop";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+import Shop from "./pages/shop/Shop";
 const App = () => {
   const param = useLocation().pathname.split("/")[2];
 
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

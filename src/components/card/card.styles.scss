@@ -3,39 +3,40 @@
 .card-container {
   color: #fff;
   border-radius: 10px;
-  padding: 10px;
   box-shadow: rgba(255, 255, 255, 0.05) 0px 0px 0px 1px;
   border: 1px solid $borderColor;
-  width: 300px;
-
+  .product-title {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+  }
   .card-bottom {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
     .price {
-      flex: 0.5;
       p {
-        font-size: 10px;
+        font-size: 14px;
+        margin-bottom: 4px;
+        color: $text-color;
       }
-    }
-    .btn {
-      flex: 0.5;
+      span {
+        font-size: 16px;
+      }
     }
   }
   .product-image {
     width: 100%;
-    min-height: 150px;
+    height: 200px;
     position: relative;
-
-    .fav {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
     }
   }
 }
