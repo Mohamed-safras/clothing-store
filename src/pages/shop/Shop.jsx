@@ -4,6 +4,7 @@ import Card from "../../components/card/Card";
 import Filter from "../../components/filter/Filter";
 import FormInput from "../../components/form-container/FormInput";
 import "../shop/shop.styles.scss";
+import { data } from "./data";
 const Shop = () => {
   return (
     <div className="shop-container">
@@ -16,19 +17,11 @@ const Shop = () => {
           />
         </div>
         <div className="card-contianer">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {data.map((item) => (
+            <React.Fragment key={item.id}>
+              <Card {...item} />
+            </React.Fragment>
+          ))}
         </div>
       </div>
       <div className="right">

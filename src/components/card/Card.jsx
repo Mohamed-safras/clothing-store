@@ -1,32 +1,32 @@
 import { Favorite, FavoriteBorder, Label } from "@mui/icons-material";
 import { Button, Checkbox } from "@mui/material";
-import React from "react";
-
+import React, { useContext } from "react";
+import { CardContext } from "../../context/cart.context";
 import "./card.styles.scss";
-const Card = () => {
+const Card = ({ id, name, price, image }) => {
+  const { addToCard, cardItems } = useContext(CardContext);
+
   return (
     <div className="card-container">
       <div className="product-image">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0419/1525/products/1024x1024-Men-Jacket-Roadster-BlackCoffee-102221-1.jpg?v=1635196923"
-          alt=""
-        />
+        <img src={image} alt={name} />
       </div>
       <p className="product-title">Monstera DK Var</p>
       <div className="ratings"></div>
       <div className="card-bottom">
         <div className="price">
           <p>price</p>
-          <span>$325</span>
+          <span>${price}</span>
         </div>
         <Button
+          onClick={() => addToCard(id)}
           style={{
             background: "white",
             color: "black",
           }}
           variant="contained"
         >
-          Add To Cart
+          Add To Cart {cardItems[id] > 0 && <>({cardItems[id]})</>}
         </Button>
       </div>
     </div>

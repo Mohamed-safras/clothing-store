@@ -1,7 +1,9 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 import React from "react";
+
 import NavLinks from "../navbar/NavLinks";
+
 import "./sidebar.styles.scss";
 const SideBar = ({ isOpen, toggleTopBar }) => {
   return (

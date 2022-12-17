@@ -1,29 +1,50 @@
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-// import { IconButton } from "@mui/material";
-// import { useContext } from "react";
-import { NavLink } from "react-router-dom";
-// import { UserContext } from "../../context/user.context";
-import "./navlinks.stles.scss";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { Avatar, Badge, IconButton } from "@mui/material";
+import { deepOrange } from "@mui/material/colors";
+import React, { useContext } from "react";
+import { UserContext } from "../../context/user.context";
+import {
+  NavCenter,
+  NavLink,
+  NavLinkContainer,
+  NavRight,
+  P,
+} from "./Navbar.styled";
+
 const NavLinks = () => {
+  const { currentUser } = useContext(UserContext);
+  console.log(currentUser);
   return (
-    <ul className="navbar-links">
-      <li className="nav-link">
-        <NavLink
-          className={({ isActive }) => (isActive ? "active" : undefined)}
-          to="/shop"
-        >
-          Shop
+    <NavLinkContainer>
+      <NavCenter>
+        <NavLink>Shop</NavLink>
+      </NavCenter>
+
+      <NavRight>
+        <NavLink to="/favorites">
+          <IconButton style={{ padding: "0 !important" }}>
+            <FavoriteBorderIcon sx={{ fontSize: 28, color: "#a1a0a5" }} />
+          </IconButton>
+          <P>Favorites</P>
         </NavLink>
-      </li>
-      <li className="nav-link">
-        <NavLink
-          className={({ isActive }) => (isActive ? "active" : undefined)}
-          to="/contact"
-        >
-          Contact
+        <NavLink to="cart">
+          <IconButton style={{ padding: "0 !important" }}>
+            <ShoppingCartOutlinedIcon sx={{ fontSize: 28, color: "#a1a0a5" }} />
+          </IconButton>
+          <P>Cart</P>
         </NavLink>
-      </li>
-    </ul>
+      </NavRight>
+      {currentUser ? (
+        <Avatar
+          src={currentUser.photoURL}
+          alt={currentUser.displayName[0]}
+          sx={{ bgcolor: deepOrange[500], margin: "0 10px" }}
+        />
+      ) : (
+        <NavLink to="/signin">Sign in</NavLink>
+      )}
+    </NavLinkContainer>
   );
 };
 
