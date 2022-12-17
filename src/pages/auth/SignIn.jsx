@@ -42,7 +42,7 @@ const SignIn = () => {
     event.preventDefault();
     try {
       const { user } = await signAuthInWithEmailAndPassword(email, password);
-      console.log(user);
+
       setCurrentUser(user);
 
       clearFields();

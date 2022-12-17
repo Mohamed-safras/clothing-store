@@ -27,7 +27,7 @@
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 10px;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 800px) {
       flex: 1;
     }
   }
@@ -41,7 +41,7 @@
       display: none;
     }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 800px) {
       flex: 0;
       display: none;
     }

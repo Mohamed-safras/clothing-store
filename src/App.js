@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+// import CardProvider from "./context/cart.context";
 
 import { UserContext } from "./context/user.context";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
-import Cart from "./pages/Cart";
+import Cart from "./pages/cart/Cart";
 import Contact from "./pages/Contact";
 import Details from "./pages/Details.";
 import Favorites from "./pages/Favorites";
@@ -17,7 +18,7 @@ import Shop from "./pages/shop/Shop";
 const App = () => {
   const param = useLocation().pathname.split("/")[2];
 
-  const { currentUser } = useContext(UserContext);
+  // const { currentUser } = useContext(UserContext);
 
   return (
     <Routes>
@@ -34,6 +35,7 @@ const App = () => {
 
         <Route path="*" element={<NotFound />} />
       </Route>
+
       <Route path="signin" element={<SignIn />} />
       <Route path="signup" element={<SignUp />} />
     </Routes>
