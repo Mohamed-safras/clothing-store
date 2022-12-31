@@ -2,7 +2,9 @@
 @import "./styles/global/global.scss";
 body {
   margin: 0;
-  background: $colorBlack;
+  width: 100%;
+  height: 100%;
+  color: black;
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

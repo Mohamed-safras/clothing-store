@@ -14,9 +14,6 @@ const categories = [
 const Filter = () => {
   return (
     <div className="filter-container">
-      <div className="filter-header">
-        <p>Filter</p>
-      </div>
       <div className="categories">
         <h3>Categories</h3>
         {categories.map((category, index) => (

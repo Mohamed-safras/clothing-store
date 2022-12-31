@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 // import CardProvider from "./context/cart.context";
 
-import { UserContext } from "./context/user.context";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import Cart from "./pages/cart/Cart";
@@ -15,6 +14,7 @@ import Products from "./pages/Products";
 import SharedLayout from "./pages/SharedLayout";
 import SharedProductLayout from "./pages/SharedProductLayout";
 import Shop from "./pages/shop/Shop";
+
 const App = () => {
   const param = useLocation().pathname.split("/")[2];
 

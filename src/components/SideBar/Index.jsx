@@ -1,11 +1,15 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContex } from "../../context/Theme.contex";
+import useSystemDefaultTheme from "../../utils/helpers/defaultTheme";
 
 import NavLinks from "../navbar/NavLinks";
 
 import "./sidebar.styles.scss";
 const SideBar = ({ isOpen, toggleTopBar }) => {
+  const { theme, changeTheme } = useContext(ThemeContex);
+  const defaultTheme = useSystemDefaultTheme();
   return (
     <div className={`sidebar-container ${isOpen ? "active" : ""}`}>
       <IconButton
@@ -19,6 +23,13 @@ const SideBar = ({ isOpen, toggleTopBar }) => {
         />
       </IconButton>
       <NavLinks />
+      <select onChange={(e) => changeTheme(e.target.value)}>
+        <option value="dark">dark</option>
+        <option value="light">light</option>
+        <option value={defaultTheme ? "dark" : "light"}>
+          Use device theme
+        </option>
+      </select>
     </div>
   );
 };

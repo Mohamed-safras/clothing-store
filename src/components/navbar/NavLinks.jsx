@@ -4,6 +4,7 @@ import { Avatar, Badge, IconButton } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import React, { useContext } from "react";
 import { UserContext } from "../../context/user.context";
+import { logout } from "../../utils/firebase/AuthMethods";
 import {
   NavCenter,
   NavLink,
@@ -14,11 +15,11 @@ import {
 
 const NavLinks = () => {
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
+
   return (
     <NavLinkContainer>
       <NavCenter>
-        <NavLink>Shop</NavLink>
+        <NavLink to="shop">Shop</NavLink>
       </NavCenter>
 
       <NavRight>
@@ -30,17 +31,20 @@ const NavLinks = () => {
         </NavLink>
         <NavLink to="cart">
           <IconButton style={{ padding: "0 !important" }}>
+            <Badge max={99} />
             <ShoppingCartOutlinedIcon sx={{ fontSize: 28, color: "#a1a0a5" }} />
           </IconButton>
           <P>Cart</P>
         </NavLink>
       </NavRight>
-      {currentUser ? (
+      {currentUser && (
         <Avatar
           src={currentUser.photoURL}
-          alt={currentUser.displayName[0]}
-          sx={{ bgcolor: deepOrange[500], margin: "0 10px" }}
+          sx={{ margin: "0 10px", width: "30px", height: "30px" }}
         />
+      )}
+      {currentUser ? (
+        <span onClick={logout}>sign out</span>
       ) : (
         <NavLink to="/signin">Sign in</NavLink>
       )}

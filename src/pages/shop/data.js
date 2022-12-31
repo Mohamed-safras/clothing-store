@@ -62,4 +62,40 @@ export const data = [
     image:
       "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/11275832/2022/4/6/0fedd175-efa2-4346-a6dd-a592b4790f2f1649234504796-High-Star-Men-Black-Solid-Denim-Jacket-3971649234504005-1.jpg",
   },
+  {
+    id: "3A$sDfdsa5dasdas3w",
+    name: "T-shirt(Maroon)",
+    price: 50,
+    limit: 3,
+    sizes: ["S", "L", "XL", "XXL"],
+    image:
+      "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/11275832/2022/4/6/0fedd175-efa2-4346-a6dd-a592b4790f2f1649234504796-High-Star-Men-Black-Solid-Denim-Jacket-3971649234504005-1.jpg",
+  },
+  {
+    id: "3A$sDfdsa5d3sdas3w",
+    name: "T-shirt(Maroon)",
+    price: 50,
+    limit: 3,
+    sizes: ["S", "L", "XL", "XXL"],
+    image:
+      "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/11275832/2022/4/6/0fedd175-efa2-4346-a6dd-a592b4790f2f1649234504796-High-Star-Men-Black-Solid-Denim-Jacket-3971649234504005-1.jpg",
+  },
+  {
+    id: "3A22Dfdsa5dasdas3w",
+    name: "T-shirt(Maroon)",
+    price: 50,
+    limit: 3,
+    sizes: ["S", "L", "XL", "XXL"],
+    image:
+      "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/11275832/2022/4/6/0fedd175-efa2-4346-a6dd-a592b4790f2f1649234504796-High-Star-Men-Black-Solid-Denim-Jacket-3971649234504005-1.jpg",
+  },
+  {
+    id: "3A2sDfdsa5dasdas3w",
+    name: "T-shirt(Maroon)",
+    price: 50,
+    limit: 3,
+    sizes: ["S", "L", "XL", "XXL"],
+    image:
+      "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/11275832/2022/4/6/0fedd175-efa2-4346-a6dd-a592b4790f2f1649234504796-High-Star-Men-Black-Solid-Denim-Jacket-3971649234504005-1.jpg",
+  },
 ];
