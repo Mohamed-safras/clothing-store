@@ -1,11 +1,10 @@
 import { getRedirectResult } from "firebase/auth";
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GoogleIcon from "../../assets/google.svg";
 import Logo from "../../assets/logo.png";
 import Button from "../../components/button-component/Button";
 import FormInput from "../../components/form-container/FormInput";
-import { UserContext } from "../../context/user.context";
 
 import {
   signAuthInWithEmailAndPassword,
@@ -25,8 +24,6 @@ const initialFormFields = {
 };
 
 const SignIn = () => {
-  const { setCurrentUser } = useContext(UserContext);
-
   const navigator = useNavigate();
   const {
     formField,
@@ -41,10 +38,7 @@ const SignIn = () => {
   const signIn = async (event) => {
     event.preventDefault();
     try {
-      const { user } = await signAuthInWithEmailAndPassword(email, password);
-
-      setCurrentUser(user);
-
+      await signAuthInWithEmailAndPassword(email, password);
       clearFields();
       navigator("/");
     } catch (error) {
@@ -69,8 +63,6 @@ const SignIn = () => {
           const { user } = response;
           await createUserFromAuth(user);
 
-          setCurrentUser(user);
-
           navigator("/");
         }
       } catch (error) {
@@ -78,7 +70,7 @@ const SignIn = () => {
       }
     };
     redirect();
-  }, [navigator, setCurrentUser]);
+  }, [navigator]);
 
   return (
     <div className="container">
