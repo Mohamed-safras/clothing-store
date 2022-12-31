@@ -17,7 +17,6 @@ const CartCard = ({ id, name, price, image }) => {
         <p>$ {price}</p>
       </div>
       <div className="quantity">
-        {message}
         <IconButton onClick={() => addToCard(id)}>
           <AddIcon sx={{ fontSize: 20, color: "#a1a0a5" }} />
         </IconButton>
