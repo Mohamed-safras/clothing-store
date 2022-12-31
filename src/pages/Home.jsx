@@ -1,13 +1,18 @@
 import React from "react";
 import Categories from "../components/categories/Categories";
 // import { UserContext } from "../context/user.context";
-
+import stylesheet from "styled-components";
 const Home = () => {
   return (
-    <React.Fragment>
+    <HomeContainer>
       <Categories />
-    </React.Fragment>
+    </HomeContainer>
   );
 };
+
+const HomeContainer = stylesheet.div`
+
+  
+`;
 
 export default Home;

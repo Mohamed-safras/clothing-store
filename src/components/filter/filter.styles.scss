@@ -1,19 +1,21 @@
 @import "../../styles/global/global.scss";
 
 .filter-container {
-  border-right: 2px solid $borderColor;
-  flex: 0.2;
   color: $colorWhite;
-  overflow-y: scroll;
-  height: 100%;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  flex: 0.2;
+  padding: 10px;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
 
   .filter-header {
     width: 100%;
-    padding: 10px;
+
     height: 50px;
     display: flex;
     align-items: center;
@@ -26,7 +28,6 @@
     border-bottom: 2px solid $borderColor;
   }
   .categories {
-    padding: 10px;
     .category {
       display: flex;
       align-items: center;
@@ -35,10 +36,5 @@
         margin-right: 10px;
       }
     }
-  }
-
-  @media screen and (max-width: 800px) {
-    display: none;
-    flex: 0;
   }
 }

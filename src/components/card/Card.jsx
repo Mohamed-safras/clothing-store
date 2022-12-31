@@ -8,26 +8,32 @@ const Card = ({ id, name, price, image }) => {
 
   return (
     <div className="card-container">
-      <div className="product-image">
-        <img src={image} alt={name} />
-      </div>
-      <p className="product-title">Monstera DK Var</p>
-      <div className="ratings"></div>
-      <div className="card-bottom">
-        <div className="price">
-          <p>price</p>
-          <span>${price}</span>
+      <div
+        className="product-image"
+        style={{ backgroundImage: `url(${image})` }}
+      />
+      <div className="card-details">
+        <p className="product-title">Monstera DK Var</p>
+        <div className="ratings"></div>
+        <div className="card-bottom">
+          <div className="price">
+            <p>price</p>
+            <span>${price}</span>
+          </div>
+          <Button
+            onClick={() => addToCard(id)}
+            style={{
+              background: "white",
+              color: "black",
+            }}
+            variant="contained"
+          >
+            Add To Cart
+            {cardItems[id] > 0 && (
+              <React.Fragment>({cardItems[id]})</React.Fragment>
+            )}
+          </Button>
         </div>
-        <Button
-          onClick={() => addToCard(id)}
-          style={{
-            background: "white",
-            color: "black",
-          }}
-          variant="contained"
-        >
-          Add To Cart {cardItems[id] > 0 && <>({cardItems[id]})</>}
-        </Button>
       </div>
     </div>
   );

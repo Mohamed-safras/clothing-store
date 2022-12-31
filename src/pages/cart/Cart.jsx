@@ -7,15 +7,16 @@ const Cart = () => {
   const { cardItems } = useContext(CardContext);
   return (
     <div className="cart-container">
-      {data.map((item) => {
-        if (cardItems[item.id] !== 0) {
-          return (
-            <React.Fragment key={item.id}>
-              <CartCard {...item} />
-            </React.Fragment>
-          );
-        }
-      })}
+      <div className="car-items">
+        {data.map(
+          (item) =>
+            cardItems[item.id] !== 0 && (
+              <React.Fragment key={item.id}>
+                <CartCard {...item} />
+              </React.Fragment>
+            )
+        )}
+      </div>
     </div>
   );
 };

@@ -1,9 +1,11 @@
 @import "../../styles/global/global.scss";
 .cart-container {
-  max-width: 600px;
-  margin: auto;
   width: 100%;
-  height: 100vh;
+
   padding: 10px;
-  color: $text-color;
+
+  .car-items {
+    max-width: 800px;
+    margin: auto;
+  }
 }

@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../styles/colors/index";
 export const NavBar = styled.nav`
-  background: ${colors.colorBlack};
+  background: ${({ theme }) =>
+    theme === "dark" ? colors.colorBlack : colors.colorWhite};
   padding: 15px 20px;
-  color: ${colors.colorWhite};
+
   height: 70px;
   display: flex;
   align-items: center;
@@ -14,11 +15,10 @@ export const NavBar = styled.nav`
   top: 0px;
   z-index: 100;
   overflow: hidden;
-  border-bottom: 2px solid ${colors.borderColor};
 `;
 
 export const NavBarLinks = styled.div`
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     display: none !important;
   }
 `;
@@ -26,7 +26,8 @@ export const NavBarLinks = styled.div`
 export const NavLinkContainer = styled.div`
   display: flex;
   align-items: center;
-  @media (max-width: 768px) {
+  color: ${colors.colorWhite};
+  @media (max-width: 800px) {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -36,9 +37,10 @@ export const SearchBar = styled.form`
   background-color: #fff;
   flex: 0.5;
   width: 100%;
-  border-radius: 15px;
+  border-radius: 20px;
+  border: 2px solid black;
 
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     flex: 0.7;
   }
 `;
@@ -59,7 +61,7 @@ export const NavRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -70,14 +72,14 @@ export const NavLink = styled(Link)`
   align-items: center;
 
   margin: 0 10px;
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     margin: 10px !important;
   }
 `;
 
 export const P = styled.p`
   display: none !important;
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     display: block !important;
   }
 `;
@@ -85,7 +87,7 @@ export const P = styled.p`
 export const MenuIconBtn = styled(IconButton)`
   padding: 0 !important;
   display: none !important;
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     display: block !important;
   }
 `;
