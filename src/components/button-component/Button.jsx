@@ -1,15 +1,18 @@
-import "../button-component/button.styles.scss";
-
+import {
+  ButtonContainer,
+  Image,
+  Title,
+} from "../button-component/Button.styles";
 const Button = ({ title, event, style_type, Icon, ...otherprops }) => {
   return (
-    <button
+    <ButtonContainer
       {...otherprops}
       onClick={event && (() => event())}
-      className={`btn ${style_type === "primary" ? "primary" : "secondary"}`}
+      style_type={style_type}
     >
-      {Icon && <img className="icon" src={Icon} alt="icon" />}
-      <p>{title}</p>
-    </button>
+      {Icon && <Image src={Icon} alt="icon" />}
+      <Title>{title}</Title>
+    </ButtonContainer>
   );
 };
 
