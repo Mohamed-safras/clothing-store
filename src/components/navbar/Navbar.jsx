@@ -4,10 +4,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
 
 // import * as React from "react";
-import React, { useContext } from "react";
-import { ReactComponent as Crown } from "../../assets/crown.svg";
+import CloseIcon from "@mui/icons-material/Close";
+import React, { useContext, useState } from "react";
+import BrandLogo from "../../assets/clothing-logo.jpg";
 import {
+  IMG,
   Input,
+  Logo,
   MenuIconBtn,
   NavBar,
   NavBarLinks,
@@ -22,27 +25,45 @@ import FormGroup from "@mui/material/FormGroup";
 
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
+import { Link } from "react-router-dom";
 import { ThemeContex } from "../../context/Theme.contex";
 
 const Navbar = ({ toggleTopBar }) => {
   const { theme } = useContext(ThemeContex);
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchText, setSearchText] = useState("");
+
+  const toggleSearchBar = () => {
+    setShowSearch(!showSearch);
+  };
   return (
     <NavBar theme={theme}>
-      <NavLink to="/" className="logo">
-        <Crown />
-      </NavLink>
-      <SearchBar>
-        <Input type="text" placeholder="Search" />
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
-      </SearchBar>
-      <NavBarLinks>
-        <NavLinks />
-      </NavBarLinks>
-      <MenuIconBtn onClick={toggleTopBar}>
-        <MenuIcon sx={{ fontSize: 40, color: "#a1a0a5" }} />
-      </MenuIconBtn>
+      <React.Fragment>
+        <Logo to="/">
+          <IMG src={BrandLogo} alt="logo" />
+        </Logo>
+
+        <SearchBar>
+          <Input
+            type="text"
+            placeholder="Search"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+
+          <IconButton>
+            {searchText.length > 0 ? (
+              <CloseIcon
+                style={{ color: "#a1a0a5", fontSize: 26 }}
+                onClick={() => setSearchText("")}
+              />
+            ) : (
+              <SearchIcon style={{ color: "#a1a0a5", fontSize: 26 }} />
+            )}
+          </IconButton>
+        </SearchBar>
+        <NavLinks toggleSearchBar={toggleSearchBar} />
+      </React.Fragment>
     </NavBar>
   );
 };

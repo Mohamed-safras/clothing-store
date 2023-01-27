@@ -5,8 +5,7 @@ import { colors } from "../../styles/colors/index";
 export const NavBar = styled.nav`
   background: ${({ theme }) =>
     theme === "dark" ? colors.colorBlack : colors.colorWhite};
-  padding: 15px 20px;
-
+  padding: 15px;
   height: 70px;
   display: flex;
   align-items: center;
@@ -17,64 +16,50 @@ export const NavBar = styled.nav`
   overflow: hidden;
 `;
 
-export const NavBarLinks = styled.div`
-  @media (max-width: 800px) {
+export const Logo = styled(Link)`
+  width: 80px;
+  height: 100%;
+  background: white;
+  border-radius: 5px;
+`;
+export const IMG = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const SearchBar = styled.form`
+  flex: 0.5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid ${colors.borderColor};
+  justify-content: space-between;
+  border-radius: 30px;
+  @media (max-width: 678px) {
     display: none !important;
   }
 `;
 
-export const NavLinkContainer = styled.div`
-  display: flex;
-  align-items: center;
-  color: ${colors.colorWhite};
-  @media (max-width: 800px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-`;
-export const SearchBar = styled.form`
-  display: flex !important;
-  background-color: #fff;
-  flex: 0.5;
-  width: 100%;
-  border-radius: 20px;
-  border: 2px solid black;
-
-  @media (max-width: 800px) {
-    flex: 0.7;
-  }
-`;
-
 export const Input = styled.input`
-  width: inherit;
-  background: transparent;
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
   border: none;
   outline: none;
-  padding: 10px;
-`;
-export const NavCenter = styled.div`
-  display: flex !important;
-  align-items: center;
+  background: transparent;
+  font-size: 16px;
+  color: ${colors.colorWhite};
+  &:focus {
+  }
 `;
 
 export const NavRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @media (max-width: 800px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-`;
-
-export const NavLink = styled(Link)`
-  display: flex;
-  align-items: center;
-
-  margin: 0 10px;
-  @media (max-width: 800px) {
-    margin: 10px !important;
-  }
+  height: 100%;
 `;
 
 export const P = styled.p`
@@ -86,8 +71,17 @@ export const P = styled.p`
 
 export const MenuIconBtn = styled(IconButton)`
   padding: 0 !important;
-  display: none !important;
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")} !important;
   @media (max-width: 800px) {
+    display: block !important;
+    margin: ${({ isOpen }) => (isOpen ? "10px" : "none")} !important;
+  }
+`;
+
+export const SearchIconBtn = styled.div`
+  display: none !important;
+
+  @media (max-width: 660px) {
     display: block !important;
   }
 `;
