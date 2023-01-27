@@ -3,8 +3,8 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Logo from "../../assets/clothing-logo.jpg";
 import GoogleIcon from "../../assets/google.svg";
-import Logo from "../../assets/logo.png";
 import Button from "../../components/button-component/Button";
 import FormInput from "../../components/form-container/FormInput";
 import {

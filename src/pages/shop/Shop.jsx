@@ -8,19 +8,7 @@ import "../shop/shop.styles.scss";
 import { data } from "./data";
 const Shop = () => {
   const { theme } = useContext(ThemeContex);
-  return (
-    <div
-      style={{
-        height: "100vh",
-        background: theme === "dark" ? colors.colorBlack : colors.colorWhite,
-      }}
-    >
-      <div class="col1">1</div>
-      <div class="col2">
-        2<div>scroll test</div>
-      </div>
-    </div>
-  );
+  return <div>shop</div>;
 };
 
 export default Shop;

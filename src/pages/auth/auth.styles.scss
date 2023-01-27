@@ -15,7 +15,7 @@
     width: 100%;
     text-align: center;
 
-    @include image(80px, 80px, cover, rgb(154, 28, 28), $colorBlue);
+    @include image(80px, 80px, contain, rgb(154, 28, 28), $colorBlue);
 
     .signup-signin-container {
       width: 100%;

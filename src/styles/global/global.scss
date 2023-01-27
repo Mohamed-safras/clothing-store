@@ -8,26 +8,6 @@ $text-color: #a1a0a5;
 $search-color: #f6f6f6;
 $box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 
-// @mixin btn($backgroundColor, $color, $fontsize) {
-//   background: $backgroundColor;
-//   color: $color;
-//   width: 150px;
-//   height: 35px;
-//   font-size: $fontsize;
-//   transition: color 350ms ease-in-out;
-//   outline: none;
-//   border: 3px solid $colorWhite;
-//   text-transform: uppercase;
-//   border-radius: 50px;
-//   font-weight: 600;
-//   fontfamily: arial;
-//   cursor: pointer;
-//   &:hover {
-//     color: $backgroundColor;
-//     background: $color;
-//   }
-// }
-
 @mixin image($width, $height, $fit, $color1, $color2) {
   .logo {
     width: $width;
@@ -37,6 +17,7 @@ $box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     position: relative;
     color: #fff;
     z-index: 10;
+
     background-clip: padding-box; /* !importanté */
     border: solid $border transparent; /* !importanté */
     border-radius: 50%;
@@ -61,6 +42,7 @@ $box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
       height: 100%;
       border-radius: 50%;
       object-fit: $fit;
+      background-color: #fff;
     }
   }
 }
