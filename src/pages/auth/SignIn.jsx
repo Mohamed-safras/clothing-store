@@ -1,8 +1,8 @@
 import { getRedirectResult } from "firebase/auth";
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Logo from "../../assets/clothing-logo.jpg";
 import GoogleIcon from "../../assets/google.svg";
-import Logo from "../../assets/logo.png";
 import Button from "../../components/button-component/Button";
 import FormInput from "../../components/form-container/FormInput";
 

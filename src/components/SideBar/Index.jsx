@@ -4,24 +4,24 @@ import React, { useContext } from "react";
 import { ThemeContex } from "../../context/Theme.contex";
 import useSystemDefaultTheme from "../../utils/helpers/defaultTheme";
 
+import { MenuIconBtn } from "../navbar/Navbar.styled";
 import NavLinks from "../navbar/NavLinks";
-
 import "./sidebar.styles.scss";
 const SideBar = ({ isOpen, toggleTopBar }) => {
   const { theme, changeTheme } = useContext(ThemeContex);
   const defaultTheme = useSystemDefaultTheme();
   return (
     <div className={`sidebar-container ${isOpen ? "active" : ""}`}>
-      <IconButton
+      <MenuIconBtn
+        isOpen={isOpen}
         sx={{ padding: "0 !important" }}
-        className="menu"
         onClick={toggleTopBar}
       >
         <MenuIcon
           color="primary"
           sx={{ fontSize: 40, color: "#a1a0a5", padding: "0 !important" }}
         />
-      </IconButton>
+      </MenuIconBtn>
       <NavLinks />
       <select onChange={(e) => changeTheme(e.target.value)}>
         <option value="dark">dark</option>
