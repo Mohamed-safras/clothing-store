@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../styles/colors/index";
 
 const Banner = ({ src }) => {
   return <Image src={src} />;
@@ -8,14 +7,13 @@ const Banner = ({ src }) => {
 
 export default Banner;
 
-const Image = styled.div`
+const Image = styled.img`
   width: 100%;
-  height: 100%;
-  background: ${(props) => `url(${props.src})`};
-  background-size: 100% 100%;
-  background-color: ${colors.colorBlack};
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 350px;
   border-radius: 10px;
-  background-position: center;
+  object-fit: cover;
+
+  @media screen and (max-width: 678px) {
+    height: 200px;
+  }
 `;

@@ -1,20 +1,24 @@
 import React from "react";
-import Categories from "../components/categories/Categories";
+
 // import { UserContext } from "../context/user.context";
-import stylesheet from "styled-components";
+import { Link } from "react-router-dom";
+
+import styled from "styled-components";
 import Banners from "../components/banner/Banners";
+import SliderComponent from "../components/sliders/Slider";
+
+import Shop from "./shop/Shop";
 const Home = () => {
   return (
     <HomeContainer>
       <Banners />
-      <Categories />
+      <SliderComponent />
+      <SliderComponent />
+      <SliderComponent />
     </HomeContainer>
   );
 };
 
-const HomeContainer = stylesheet.div`
-
-  
-`;
+const HomeContainer = styled.div``;
 
 export default Home;

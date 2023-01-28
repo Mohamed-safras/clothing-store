@@ -1,95 +1,90 @@
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import EastIcon from "@mui/icons-material/East";
+import WestIcon from "@mui/icons-material/West";
 import { IconButton } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useRef } from "react";
+import Slider from "react-slick";
 import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 import Banner from "./Banner";
 const bannerdata = [
   {
     id: 1,
-    src: "https://img.freepik.com/free-psd/online-shopping-banner-template_23-2148582752.jpg?w=1060&t=st=1674715126~exp=1674715726~hmac=41b928b44f401529acf144afe8be11c6d3888b3d77d567592078e070c9a567f8",
+    src: "https://img.freepik.com/free-psd/special-sales-banner-template_23-2148975924.jpg?w=1060&t=st=1674818548~exp=1674819148~hmac=1b29541e72c96b658af49ea739f427b5da1160e1e22d89c643f44e1617266c3a",
   },
   {
     id: 2,
-    src: "https://img.freepik.com/premium-psd/online-shopping-concept-banner-template_23-2148559462.jpg?w=1060",
+    src: "https://img.freepik.com/free-psd/fashion-sale-concept-banner-template_23-2148696517.jpg?w=1060&t=st=1674818581~exp=1674819181~hmac=9bc4329e34f633730bca07f893d3ff2d89fc8db8f2263bb1b3fd47a0f20f030f",
   },
   {
     id: 3,
-    src: "https://img.freepik.com/free-psd/banner-template-with-online-shopping_23-2148545455.jpg?w=1060&t=st=1674715172~exp=1674715772~hmac=0f1fcb684b2de0929635a3f14f9f0e02c487bc074ead38149653b1ae4da197bb",
+    src: "https://img.freepik.com/free-psd/online-shopping-banner-template-design_23-2148690177.jpg?w=1060&t=st=1674818683~exp=1674819283~hmac=61fc791c04eb13cfcc14d8b7aceab15869b2274115766ea56d2317eea16065b4",
+  },
+  {
+    id: 4,
+    src: "https://img.freepik.com/free-psd/online-shopping-horizontal-banner_23-2148690175.jpg",
   },
 ];
 
 const Banners = () => {
-  const [counter, setCounter] = useState(0);
-
-  const increment = () => {
-    setCounter(() => counter + 1);
-    if (counter === bannerdata.length - 1) {
-      setCounter(0);
-    }
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    arrows: false,
   };
 
-  const decrement = () => {
-    setCounter(() => counter - 1);
-    if (counter === 0) {
-      setCounter(bannerdata.length - 1);
-    }
-  };
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCounter(() => counter + 1);
-      if (counter === bannerdata.length - 1) {
-        setCounter(0);
-      }
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [counter]);
-
+  const slideRef = useRef(null);
   return (
-    <BannersContainer>
-      <GoLeft>
-        <IconButton onClick={decrement}>
-          <ChevronLeftIcon sx={{ fontSize: 50, color: "#a1a0a5" }} />
-        </IconButton>
-      </GoLeft>
+    <Slide>
+      <Slider ref={slideRef} {...settings}>
+        {bannerdata.map((item) => (
+          <Banner src={item.src} key={item.id} />
+        ))}
+      </Slider>
 
-      {bannerdata.map(
-        (item, index) =>
-          counter === index && <Banner key={item.id} src={item.src} />
-      )}
-
-      <GoRight>
-        <IconButton onClick={increment}>
-          <ChevronRightIcon sx={{ fontSize: 50, color: "#a1a0a5" }} />
+      <Button onClick={() => slideRef?.current.slickNext()}>
+        <IconButton>
+          <EastIcon style={{ color: `${colors.colorBlack}`, fontSize: 26 }} />
         </IconButton>
-      </GoRight>
-    </BannersContainer>
+      </Button>
+      <Button1 onClick={() => slideRef?.current.slickPrev()}>
+        <IconButton>
+          <WestIcon style={{ color: `${colors.colorBlack}`, fontSize: 26 }} />
+        </IconButton>
+      </Button1>
+    </Slide>
   );
 };
 
 export default Banners;
 
-const BannersContainer = styled.div`
+const Slide = styled.div`
   width: 100%;
-  height: 350px;
+  padding: 15px;
+  margin-bottom: 1rem;
+  position: relative;
+`;
+
+const Button = styled.div`
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding: 15px;
-
-  @media screen and (max-width: 678px) {
-    height: 250px;
-  }
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  right: 1.5rem;
+  background: ${colors.colorWhite};
+  border-radius: 50%;
+  padding: 10px;
 `;
 
-const GoRight = styled.div`
-  position: absolute;
-  right: 15px;
-`;
-
-const GoLeft = styled.div`
-  position: absolute;
-  left: 15px;
+const Button1 = styled(Button)`
+  left: 1.5rem;
 `;

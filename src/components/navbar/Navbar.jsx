@@ -1,22 +1,9 @@
-import MenuIcon from "@mui/icons-material/Menu";
-
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
-
-// import * as React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import React, { useContext, useState } from "react";
 import BrandLogo from "../../assets/clothing-logo.jpg";
-import {
-  IMG,
-  Input,
-  Logo,
-  MenuIconBtn,
-  NavBar,
-  NavBarLinks,
-  NavLink,
-  SearchBar,
-} from "./Navbar.styled";
+import { IMG, Input, Logo, NavBar, SearchBar } from "./Navbar.styled";
 
 import NavLinks from "./NavLinks";
 
@@ -25,7 +12,7 @@ import FormGroup from "@mui/material/FormGroup";
 
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
-import { Link } from "react-router-dom";
+
 import { ThemeContex } from "../../context/Theme.contex";
 
 const Navbar = ({ toggleTopBar }) => {
