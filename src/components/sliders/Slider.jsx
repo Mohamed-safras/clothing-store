@@ -4,7 +4,7 @@ import styled from "styled-components";
 import CategoryItem from "../categories/CategoryItem";
 
 import categories from "../../data/data.json";
-const SliderComponent = () => {
+const SliderComponent = ({ title }) => {
   const settings = {
     arrows: false,
     infinite: false,
@@ -39,19 +39,11 @@ const SliderComponent = () => {
   };
   return (
     <Slide>
-      <h3>Catagories of Products</h3>
+      <h3>{title}</h3>
       <Slider {...settings}>
         {categories.categories.map(({ id, title, imageUrl }) => (
           <CategoryItem key={id} title={title} imageUrl={imageUrl} />
         ))}
-
-        {/*<Link
-          className="category-container"
-          to={`products/${title}`}
-          key={id}
-        >
-          
-      </Link>*/}
       </Slider>
     </Slide>
   );

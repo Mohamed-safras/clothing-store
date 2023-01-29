@@ -7,11 +7,12 @@ const CategoryItem = ({ title, imageUrl }) => {
   return (
     <Container>
       <Image src={imageUrl} />
-
-      <ProductDetails>
-        <h2>{title}</h2>
-        <p>shop now</p>
-      </ProductDetails>
+      <Link to={`shop/${title}`}>
+        <ProductDetails>
+          <h2>{title}</h2>
+          <p>shop now</p>
+        </ProductDetails>
+      </Link>
     </Container>
   );
 };
@@ -29,6 +30,7 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 5px;
 `;
 
 const ProductDetails = styled.div`

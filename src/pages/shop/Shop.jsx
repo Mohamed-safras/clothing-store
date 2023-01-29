@@ -6,11 +6,22 @@ import { ThemeContex } from "../../context/Theme.contex";
 import SHOP_DATA from "../../data/clothing.json";
 import { colors } from "../../styles/colors/theme";
 import "../shop/shop.styles.scss";
+import { ShopContainer } from "./stylesheet";
 const Shop = () => {
-  useEffect(() => console.log(SHOP_DATA.data), []);
-
   const { theme } = useContext(ThemeContex);
-  return <div>shop</div>;
+  return (
+    <ShopContainer>
+      {SHOP_DATA.data.map(({ title, image, new_price, old_price, brand }) => (
+        <Card
+          name={title}
+          image={image}
+          new_price={new_price}
+          old_price={old_price}
+          brand={brand}
+        />
+      ))}
+    </ShopContainer>
+  );
 };
 
 export default Shop;

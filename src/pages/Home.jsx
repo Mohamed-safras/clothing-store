@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <HomeContainer>
       <Banners />
-      <SliderComponent />
+      <SliderComponent title={"Catagories of items"} />
       <SliderComponent />
       <SliderComponent />
     </HomeContainer>
