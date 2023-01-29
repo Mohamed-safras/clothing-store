@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { ProductContext } from "./context/product.context";
 // import CardProvider from "./context/cart.context";
 
 import SignIn from "./pages/auth/SignIn";
@@ -18,7 +19,7 @@ import Shop from "./pages/shop/Shop";
 const App = () => {
   const param = useLocation().pathname.split("/")[2];
 
-  // const { currentUser } = useContext(UserContext);
+  const { products } = useContext(ProductContext);
 
   return (
     <Routes>
@@ -26,6 +27,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="cart" element={<Cart />} />
         <Route path="favorites" element={<Favorites />} />
+
         <Route path={`shop/${param}`} element={<Shop />} />
         <Route path="contact" element={<Contact />} />
         <Route path={`products/${param}`} element={<SharedProductLayout />}>

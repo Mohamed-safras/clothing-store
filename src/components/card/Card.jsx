@@ -1,6 +1,7 @@
 import { Favorite, FavoriteBorder, Label } from "@mui/icons-material";
 import { Button, Checkbox } from "@mui/material";
 import React, { useContext } from "react";
+import Rating_Icon from "../../assets/star-rating-icon.png";
 import { CardContext } from "../../context/cart.context";
 import "./card.styles.scss";
 const Card = ({ id, name, new_price, old_price, image, brand }) => {
@@ -25,7 +26,13 @@ const Card = ({ id, name, new_price, old_price, image, brand }) => {
     <div className="card-container">
       <div className="product-image">
         <img src={image} alt={name} />
-        {/*<div className="ratings"></div>*/}
+        <div className="ratings">
+          <span>3.9</span>
+          <img
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMiI+PHBhdGggZmlsbD0iI0ZGRiIgZD0iTTYuNSA5LjQzOWwtMy42NzQgMi4yMy45NC00LjI2LTMuMjEtMi44ODMgNC4yNTQtLjQwNEw2LjUuMTEybDEuNjkgNC4wMSA0LjI1NC40MDQtMy4yMSAyLjg4Mi45NCA0LjI2eiIvPjwvc3ZnPg=="
+            alt=""
+          />
+        </div>
       </div>
       <div className="card-details">
         <p className="product-title">
