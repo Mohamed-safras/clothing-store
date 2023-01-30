@@ -5,13 +5,14 @@ import { Avatar, Badge, IconButton } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CardContext } from "../../context/cart.context";
 import { UserContext } from "../../context/user.context";
 import { colors } from "../../styles/colors";
 import { NavRight, SearchIconBtn } from "./Navbar.styled";
 
 const NavLinks = ({ toggleSearchBar }) => {
   const { currentUser } = useContext(UserContext);
-
+  const { numberOfItems } = useContext(CardContext);
   return (
     <NavRight>
       <SearchIconBtn onClick={toggleSearchBar}>
@@ -26,8 +27,9 @@ const NavLinks = ({ toggleSearchBar }) => {
       </Link>
       <Link to="cart">
         <IconButton>
-          <Badge max={99} />
-          <LocalMallOutlinedIcon sx={{ fontSize: 26, color: "#a1a0a5" }} />
+          <Badge badgeContent={numberOfItems} max={99} color="primary">
+            <LocalMallOutlinedIcon sx={{ fontSize: 26, color: "#a1a0a5" }} />
+          </Badge>
         </IconButton>
       </Link>
       {currentUser ? (
