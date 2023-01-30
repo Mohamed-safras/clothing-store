@@ -1,16 +1,31 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import React, { useContext, useEffect } from "react";
-import Card from "../../components/card/Card";
 import Filter from "../../components/filter/Filter";
+import Card from "../../components/product-card/Card";
+import { ProductContext } from "../../context/product.context";
 import { ThemeContex } from "../../context/Theme.contex";
-import SHOP_DATA from "../../data/clothing.json";
 import { colors } from "../../styles/colors/theme";
 import "../shop/shop.styles.scss";
+import { ShopContainer } from "./stylesheet";
 const Shop = () => {
-  useEffect(() => console.log(SHOP_DATA.data), []);
+  // const { theme } = useContext(ThemeContex);
+  const { products } = useContext(ProductContext);
 
-  const { theme } = useContext(ThemeContex);
-  return <div>shop</div>;
+  return (
+    <ShopContainer>
+      {products.map(({ id, title, image, new_price, old_price, brand }) => (
+        <Card
+          key={id}
+          id={id}
+          name={title}
+          image={image}
+          new_price={new_price}
+          old_price={old_price}
+          brand={brand}
+        />
+      ))}
+    </ShopContainer>
+  );
 };
 
 export default Shop;

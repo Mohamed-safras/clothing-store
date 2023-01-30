@@ -1,23 +1,33 @@
-import { createContext, useState } from "react";
-import { data } from "../pages/shop/data";
+import { createContext, useContext, useState } from "react";
+
+import { ProductContext } from "./product.context";
 export const CardContext = createContext();
 
-const setDefaultCard = () => {
-  const defaultCard = {};
-  for (let item of data) {
-    defaultCard[item.id] = 0;
-  }
-  return defaultCard;
-};
-
 export const CardProvider = ({ children }) => {
+  const { products } = useContext(ProductContext);
+
+  const setDefaultCard = () => {
+    const defaultCard = {};
+    for (let item of products) {
+      defaultCard[item.id] = 0;
+    }
+    return defaultCard;
+  };
+
   const [cardItems, setCardItems] = useState(setDefaultCard());
   const [message, setMessage] = useState("");
+
+  let numberOfItems = 0;
+
+  for (const [, value] of Object.entries(cardItems)) {
+    numberOfItems += value;
+  }
+
   const addToCard = (itemId) => {
-    const item = data.find((item) => item.id === itemId);
-    if (cardItems[itemId] !== item.limit) {
+    const item = products.find((item) => item.id === itemId);
+    if (cardItems[itemId] !== Number.parseInt(item.limit)) {
       setCardItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-      cardItems[itemId] + 1 === item.limit
+      cardItems[itemId] + 1 === Number.parseInt(item.limit)
         ? setMessage("item limit exceeded")
         : setMessage(item.limit + "product is available");
     }
@@ -28,7 +38,7 @@ export const CardProvider = ({ children }) => {
   };
   return (
     <CardContext.Provider
-      value={{ cardItems, addToCard, removeCardItems, message }}
+      value={{ cardItems, addToCard, removeCardItems, message, numberOfItems }}
     >
       {children}
     </CardContext.Provider>

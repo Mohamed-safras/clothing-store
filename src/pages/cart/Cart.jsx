@@ -1,14 +1,26 @@
 import React, { useContext } from "react";
 import { CardContext } from "../../context/cart.context";
-import { data } from "../shop/data";
+import { ProductContext } from "../../context/product.context";
 import CartCard from "./Cart.card";
-import "./cart.styles.scss";
+
+import { CartHeader, CartItems, CartsContainer } from "./carts.style";
 const Cart = () => {
-  const { cardItems } = useContext(CardContext);
+  const { cardItems, numberOfItems } = useContext(CardContext);
+  const { products } = useContext(ProductContext);
+  console.log(numberOfItems);
   return (
-    <div className="cart-container">
-      <div className="car-items">
-        {data.map(
+    <CartsContainer>
+      <h1>My Shopping Cart</h1>
+
+      <CartItems>
+        <CartHeader>
+          <p className="description">Description</p>
+          <p className="size">Size</p>
+          <p className="quantity">Quantity</p>
+          <p className="remove">Remove</p>
+          <p className="price">Price</p>
+        </CartHeader>
+        {products.map(
           (item) =>
             cardItems[item.id] !== 0 && (
               <React.Fragment key={item.id}>
@@ -16,8 +28,8 @@ const Cart = () => {
               </React.Fragment>
             )
         )}
-      </div>
-    </div>
+      </CartItems>
+    </CartsContainer>
   );
 };
 
