@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors/theme";
 export const CartContainer = styled.div`
-  height: 100px;
+  /* height: 100px; */
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid #e7e7e7;
-
   padding: 10px;
 `;
 export const Description = styled.div`

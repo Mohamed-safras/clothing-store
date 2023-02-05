@@ -9,7 +9,7 @@ export default Banner;
 
 const Image = styled.img`
   width: 100%;
-  height: 350px;
+  height: 300px;
   border-radius: 10px;
   object-fit: cover;
 
