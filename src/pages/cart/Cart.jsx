@@ -10,25 +10,31 @@ const Cart = () => {
   console.log(numberOfItems);
   return (
     <CartsContainer>
-      <h1>My Shopping Cart</h1>
+      {numberOfItems > 0 ? (
+        <React.Fragment>
+          <h1>My Shopping Cart</h1>
 
-      <CartItems>
-        <CartHeader>
-          <p className="description">Description</p>
-          <p className="size">Size</p>
-          <p className="quantity">Quantity</p>
-          <p className="remove">Remove</p>
-          <p className="price">Price</p>
-        </CartHeader>
-        {products.map(
-          (item) =>
-            cardItems[item.id] !== 0 && (
-              <React.Fragment key={item.id}>
-                <CartCard {...item} />
-              </React.Fragment>
-            )
-        )}
-      </CartItems>
+          <CartItems>
+            <CartHeader>
+              <p className="description">Description</p>
+              <p className="size">Size</p>
+              <p className="quantity">Quantity</p>
+              <p className="remove">Remove</p>
+              <p className="price">Price</p>
+            </CartHeader>
+            {products.map(
+              (item) =>
+                cardItems[item.id] !== 0 && (
+                  <React.Fragment key={item.id}>
+                    <CartCard {...item} />
+                  </React.Fragment>
+                )
+            )}
+          </CartItems>
+        </React.Fragment>
+      ) : (
+        <h1>Your Cart is Empty</h1>
+      )}
     </CartsContainer>
   );
 };

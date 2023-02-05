@@ -1,12 +1,14 @@
-import { Favorite, FavoriteBorder, Label } from "@mui/icons-material";
-import { Button, Checkbox } from "@mui/material";
+import { Label } from "@mui/icons-material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderSharpIcon from "@mui/icons-material/FavoriteBorderSharp";
+import { Button, Checkbox, IconButton } from "@mui/material";
+import { pink } from "@mui/material/colors";
 import React, { useContext, useState } from "react";
 
 import { CardContext } from "../../context/cart.context";
 import { colors } from "../../styles/colors/theme";
 
 import {
-  AddToCard,
   Brand,
   CardBottom,
   CardContainer,
@@ -17,6 +19,7 @@ import {
   ProductTitle,
   Rating,
   Sizes,
+  Wishlist,
 } from "./products.style";
 
 const Card = ({ id, name, new_price, old_price, image, brand }) => {
@@ -56,30 +59,9 @@ const Card = ({ id, name, new_price, old_price, image, brand }) => {
       </ProductImage>
       <CardDetails>
         <CardHeader>
-          {!isHover ? (
-            <ProductTitle>
-              {name.length > 20 ? `${name.slice(0, 20).trim()}...` : name}
-            </ProductTitle>
-          ) : (
-            <AddToCard>
-              <Button
-                style={{
-                  background: `${colors.colorBlack}`,
-                  color: `${colors.colorWhite}`,
-                  fontSize: "10px",
-                  fontWeight: 700,
-                  width: "100%",
-                }}
-                variant="contained"
-                onClick={() => addToCard(id)}
-              >
-                Add To Cart
-                {cardItems[id] > 0 && (
-                  <React.Fragment>({cardItems[id]})</React.Fragment>
-                )}
-              </Button>
-            </AddToCard>
-          )}
+          <ProductTitle>
+            {name.length > 20 ? `${name.slice(0, 20).trim()}...` : name}
+          </ProductTitle>
 
           {!isHover ? (
             <Brand>{brand}</Brand>
@@ -101,6 +83,18 @@ const Card = ({ id, name, new_price, old_price, image, brand }) => {
             <span className="off">({off}% OFF)</span>
           </Price>
         </CardBottom>
+        <Wishlist>
+          {false ? (
+            <IconButton>
+              <FavoriteIcon sx={{ color: pink[400] }} />
+            </IconButton>
+          ) : (
+            <IconButton>
+              <FavoriteBorderSharpIcon />
+            </IconButton>
+          )}
+          <span>WISHLIST</span>
+        </Wishlist>
       </CardDetails>
     </CardContainer>
   );
