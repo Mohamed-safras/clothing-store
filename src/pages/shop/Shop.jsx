@@ -13,16 +13,8 @@ const Shop = () => {
 
   return (
     <ShopContainer>
-      {products.map(({ id, title, image, new_price, old_price, brand }) => (
-        <Card
-          key={id}
-          id={id}
-          name={title}
-          image={image}
-          new_price={new_price}
-          old_price={old_price}
-          brand={brand}
-        />
+      {products.map((item) => (
+        <Card key={item.id} {...item} />
       ))}
     </ShopContainer>
   );

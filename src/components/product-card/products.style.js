@@ -65,7 +65,7 @@ export const ProductTitle = styled.p`
   font-weight: 500;
 `;
 
-export const Wishlist = styled.div`
+export const AddToCart = styled.div`
   margin: 8px;
   border: 2px solid ${colors.searchColor};
   text-align: center;

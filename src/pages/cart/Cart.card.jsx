@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { IconButton } from "@mui/material";
 import { useContext } from "react";
-import { CardContext } from "../../context/cart.context";
+import { CartContext } from "../../context/cart.context";
 import { colors } from "../../styles/colors/theme";
 import {
   CartContainer,
@@ -18,9 +18,12 @@ import {
 } from "./cart.style";
 import "./cartcard.styles.scss";
 
-const CartCard = ({ id, title, new_price, image }) => {
-  const { cardItems, removeCardItems, addToCard, message } =
-    useContext(CardContext);
+const CartCard = (props) => {
+  const { title, new_price, image, quantity } = props;
+
+  const { addToCart, removeToCartItem, removeToCartAtOnce } =
+    useContext(CartContext);
+  const addToProductCart = () => addToCart(props);
   return (
     <CartContainer>
       <Description>
@@ -38,18 +41,19 @@ const CartCard = ({ id, title, new_price, image }) => {
       </Description>
       <Size>L</Size>
       <Quantity>
-        <span className="add" onClick={() => addToCard(id)}>
+        <span className="add" onClick={addToProductCart}>
           <AddIcon sx={{ fontSize: 18, color: `${colors.colorWhite}` }} />
         </span>
-        <span className="count">{cardItems[id]}</span>
-        <span className="remove" onClick={() => removeCardItems(id)}>
+        <span className="count">{quantity}</span>
+        <span className="remove" onClick={() => removeToCartItem(props)}>
           <RemoveIcon sx={{ fontSize: 18, color: `${colors.inputBlack}` }} />
         </span>
       </Quantity>
-      <Remove className="remove" onClick={() => removeCardItems(id)}>
+
+      <Price className="price">Rs.{new_price.slice(1)}</Price>
+      <Remove className="remove" onClick={() => removeToCartAtOnce(props)}>
         <CloseIcon sx={{ fontSize: 18, color: `${colors.inputBlack}` }} />
       </Remove>
-      <Price className="price">Rs.{new_price.slice(1)}</Price>
     </CartContainer>
   );
 };
