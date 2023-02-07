@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ProductContext } from "./context/product.context";
 // import CardProvider from "./context/cart.context";
 
+import axios from "axios";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import Cart from "./pages/cart/Cart";
@@ -15,10 +16,32 @@ import Products from "./pages/Products";
 import SharedLayout from "./pages/SharedLayout";
 import SharedProductLayout from "./pages/SharedProductLayout";
 import Shop from "./pages/shop/Shop";
-
 const App = () => {
   const param = useLocation().pathname.split("/")[2];
+  /* const [selectedFile, setSelectedFile] = useState();
 
+  const changeHandler = (event) => {
+    console.log(event.target);
+    setSelectedFile(event.target.files[0]);
+  };
+  const predict = async () => {
+    const formData = new FormData();
+
+    formData.append("file", selectedFile);
+
+    try {
+      const res = await axios.post("http://localhost:8080/predict", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(res.status);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+*/
   const { products } = useContext(ProductContext);
 
   return (

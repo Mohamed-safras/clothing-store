@@ -5,7 +5,7 @@ import { Button, Checkbox, IconButton } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import React, { useContext, useState } from "react";
 
-import { CardContext } from "../../context/cart.context";
+import { CartContext } from "../../context/cart.context";
 import { colors } from "../../styles/colors/theme";
 
 import {
@@ -19,11 +19,12 @@ import {
   ProductTitle,
   Rating,
   Sizes,
-  Wishlist,
+  AddToCart,
 } from "./products.style";
 
-const Card = ({ id, name, new_price, old_price, image, brand }) => {
-  const { addToCard, cardItems } = useContext(CardContext);
+const Card = (props) => {
+  const { new_price, old_price, image, title, brand } = props;
+  const { addToCart, cardItems } = useContext(CartContext);
   let new_display_price = new_price.slice(1);
   let old_display_price = old_price.slice(1);
 
@@ -41,14 +42,14 @@ const Card = ({ id, name, new_price, old_price, image, brand }) => {
   }
 
   const [isHover, setIsHover] = useState(false);
-
+  const addToProductCart = () => addToCart(props);
   return (
     <CardContainer
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
       <ProductImage>
-        <img src={image} alt={name} />
+        <img src={image} alt={title} />
         <Rating>
           <span>3.9</span>
           <img
@@ -60,7 +61,7 @@ const Card = ({ id, name, new_price, old_price, image, brand }) => {
       <CardDetails>
         <CardHeader>
           <ProductTitle>
-            {name.length > 20 ? `${name.slice(0, 20).trim()}...` : name}
+            {title.length > 20 ? `${title.slice(0, 20).trim()}...` : title}
           </ProductTitle>
 
           {!isHover ? (
@@ -83,7 +84,7 @@ const Card = ({ id, name, new_price, old_price, image, brand }) => {
             <span className="off">({off}% OFF)</span>
           </Price>
         </CardBottom>
-        <Wishlist>
+        <AddToCart onClick={addToProductCart}>
           {false ? (
             <IconButton>
               <FavoriteIcon sx={{ color: pink[400] }} />
@@ -93,8 +94,8 @@ const Card = ({ id, name, new_price, old_price, image, brand }) => {
               <FavoriteBorderSharpIcon />
             </IconButton>
           )}
-          <span>WISHLIST</span>
-        </Wishlist>
+          <span>AddToCart</span>
+        </AddToCart>
       </CardDetails>
     </CardContainer>
   );

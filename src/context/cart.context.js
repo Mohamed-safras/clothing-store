@@ -1,46 +1,91 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
-import { ProductContext } from "./product.context";
-export const CardContext = createContext();
+const addCartItem = (cartItems, productToAdd) => {
+  const existingCartItem = cartItems.find(
+    (item) => item.id === productToAdd.id
+  );
 
-export const CardProvider = ({ children }) => {
-  const { products } = useContext(ProductContext);
+  if (existingCartItem) {
+    const existing = cartItems.map((cartItem) =>
+      cartItem.id === productToAdd.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    );
 
-  const setDefaultCard = () => {
-    const defaultCard = {};
-    for (let item of products) {
-      defaultCard[item.id] = 0;
-    }
-    return defaultCard;
-  };
-
-  const [cardItems, setCardItems] = useState(setDefaultCard());
-  const [message, setMessage] = useState("");
-
-  let numberOfItems = 0;
-
-  for (const [, value] of Object.entries(cardItems)) {
-    numberOfItems += value;
+    return existing;
   }
 
-  const addToCard = (itemId) => {
-    const item = products.find((item) => item.id === itemId);
-    if (cardItems[itemId] !== Number.parseInt(item.limit)) {
-      setCardItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-      cardItems[itemId] + 1 === Number.parseInt(item.limit)
-        ? setMessage("item limit exceeded")
-        : setMessage(item.limit + "product is available");
-    }
+  return [...cartItems, { ...productToAdd, quantity: 1 }];
+};
+
+const removeCartItem = (cartItems, productToRemove) => {
+  const newCartItem = cartItems
+    .map((cartItem) =>
+      cartItem.id === productToRemove.id
+        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+        : cartItem
+    )
+    .filter((item) => item.quantity !== 0)
+    .map((item) => item);
+  return newCartItem;
+};
+
+const removeCartItemAtOnce = (cartItems, productToRemove) => {
+  const newCartItem = cartItems
+    .filter((item) => item.id !== productToRemove.id)
+    .map((cartItem) => cartItem);
+  return newCartItem;
+};
+
+export const CartContext = createContext({
+  cartItems: [],
+  addToCart: () => {},
+  removeToCartItem: () => {},
+  numberOfCartItems: 0,
+  removeToCartAtOnce: () => {},
+  total: 0,
+});
+
+export const CartProvider = ({ children }) => {
+  // const { products } = useContext(ProductContext);
+
+  const [cartItems, setCartItems] = useState([]);
+  const [numberOfCartItems, setNumberOfCartItems] = useState(0);
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    const totalItems = cartItems.reduce((prev, current) => {
+      return prev + current.quantity;
+    }, 0);
+
+    const total = cartItems.reduce((prev, current) => {
+      const new_price = current.new_price.slice(1);
+
+      return prev + current.quantity * Number.parseFloat(new_price);
+    }, 0);
+
+    setNumberOfCartItems(totalItems);
+    setTotal(total);
+  }, [cartItems]);
+
+  const addToCart = (productToAdd) => {
+    setCartItems(addCartItem(cartItems, productToAdd));
   };
 
-  const removeCardItems = (itemId) => {
-    setCardItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+  const removeToCartItem = (productToRemove) => {
+    setCartItems(removeCartItem(cartItems, productToRemove));
   };
-  return (
-    <CardContext.Provider
-      value={{ cardItems, addToCard, removeCardItems, message, numberOfItems }}
-    >
-      {children}
-    </CardContext.Provider>
-  );
+
+  const removeToCartAtOnce = (productToRemove) => {
+    setCartItems(removeCartItemAtOnce(cartItems, productToRemove));
+  };
+
+  const value = {
+    cartItems,
+    addToCart,
+    numberOfCartItems,
+    removeToCartItem,
+    removeToCartAtOnce,
+    total,
+  };
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
