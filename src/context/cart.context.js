@@ -19,15 +19,19 @@ const addCartItem = (cartItems, productToAdd) => {
 };
 
 const removeCartItem = (cartItems, productToRemove) => {
-  const newCartItem = cartItems
-    .map((cartItem) =>
-      cartItem.id === productToRemove.id
-        ? { ...cartItem, quantity: cartItem.quantity - 1 }
-        : cartItem
-    )
-    .filter((item) => item.quantity !== 0)
-    .map((item) => item);
-  return newCartItem;
+  const existingCartItems = cartItems.find(
+    (cartItem) => cartItem.id === productToRemove.id
+  );
+
+  if (existingCartItems.quantity === 1) {
+    return cartItems.filter((cartItem) => cartItem.id !== productToRemove.id);
+  }
+
+  return cartItems.map((cartItem) =>
+    cartItem.id === productToRemove.id
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : cartItem
+  );
 };
 
 const removeCartItemAtOnce = (cartItems, productToRemove) => {

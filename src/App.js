@@ -18,8 +18,8 @@ import SharedProductLayout from "./pages/SharedProductLayout";
 import Shop from "./pages/shop/Shop";
 const App = () => {
   const param = useLocation().pathname.split("/")[2];
-  /* const [selectedFile, setSelectedFile] = useState();
-
+  const [selectedFile, setSelectedFile] = useState();
+  const [output, setOutput] = useState({});
   const changeHandler = (event) => {
     console.log(event.target);
     setSelectedFile(event.target.files[0]);
@@ -35,13 +35,16 @@ const App = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+      setOutput(() => {
+        return { class: res.data.class, confidence: res.data.confidence };
+      });
       console.log(res.status);
       console.log(res.data);
     } catch (error) {
       console.log(error);
     }
   };
-*/
+
   const { products } = useContext(ProductContext);
 
   return (
@@ -49,7 +52,16 @@ const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
         <Route path="cart" element={<Cart />} />
-        <Route path="favorites" element={<Favorites />} />
+        <Route
+          path="favorites"
+          element={
+            <Favorites
+              predict={predict}
+              change={changeHandler}
+              output={output}
+            />
+          }
+        />
 
         <Route path={`shop/${param}`} element={<Shop />} />
         <Route path="contact" element={<Contact />} />

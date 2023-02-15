@@ -1,115 +1,89 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors/theme";
 export const CartContainer = styled.div`
-  /* height: 100px; */
   width: 100%;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #e7e7e7;
+  margin: 10px 0;
+  border: 1px solid #e7e7e7;
   padding: 10px;
 `;
+
 export const Description = styled.div`
   display: flex;
   align-items: center;
-  flex: 0.5;
+  width: 40%;
+  justify-content: center;
 `;
 
 export const Image = styled.div`
-  flex: 0.2;
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 80px;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 5px;
   }
 `;
 
 export const ProductTitle = styled.div`
-  flex: 0.8;
-  margin: 0 10px;
-
+  margin: 0 15px;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   .title {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1;
+    margin: 3px 0;
   }
   .brand {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: ${colors.textColor};
   }
 `;
 
 export const Price = styled.div`
-  flex: 0.1;
+  width: 20%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const Size = styled.div`
-  flex: 0.05;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 3px 0px;
-  padding: 5px;
-  font-size: 16px;
-  min-width: 35px;
-  min-height: 35px;
-  max-width: 35px;
-  max-height: 35px;
-  width: 100%;
+export const Total = styled.div`
+  width: 20%;
+
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const Quantity = styled.div`
-  flex: 0.3;
+  width: 20%;
+
   display: flex;
   align-items: center;
   justify-content: center;
-
-  .add,
-  .remove,
-  .count {
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 3px 0px;
-    padding: 5px;
-    font-size: 16px;
-    min-width: 35px;
-    min-height: 35px;
-    max-width: 35px;
-    max-height: 35px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .add {
-    background: ${colors.colorPrimary};
-    color: ${colors.colorWhite};
-    cursor: pointer;
-  }
-
-  .remove {
-    background: ${colors.searchColor};
-    width: 100%;
-    cursor: pointer;
-  }
+  text-align: center;
 `;
 
-export const Remove = styled.div`
-  flex: 0.05;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 3px 0px;
-  padding: 5px;
-  font-size: 16px;
+export const Remove = styled.button`
+  background: ${colors.textColor};
+  padding: 8px 10px;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: ${colors.colorWhite};
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 35px;
-  min-height: 35px;
-  max-width: 35px;
-  max-height: 35px;
-  cursor: pointer;
+  margin: 3px 0;
 `;
