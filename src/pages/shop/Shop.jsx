@@ -1,11 +1,10 @@
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import React, { useContext, useEffect } from "react";
-import Filter from "../../components/filter/Filter";
+// import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import React, { useContext } from "react";
 import Card from "../../components/product-card/Card";
 import { ProductContext } from "../../context/product.context";
-import { ThemeContex } from "../../context/Theme.contex";
-import { colors } from "../../styles/colors/theme";
-import "../shop/shop.styles.scss";
+// import { ThemeContex } from "../../context/Theme.contex";
+// import { colors } from "../../styles/colors/theme";
+
 import { ShopContainer } from "./stylesheet";
 const Shop = () => {
   // const { theme } = useContext(ThemeContex);

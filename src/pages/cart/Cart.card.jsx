@@ -1,6 +1,4 @@
 import AddIcon from "@mui/icons-material/Add";
-
-import CloseIcon from "@mui/icons-material/Close";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { IconButton } from "@mui/material";
 import { useContext } from "react";
@@ -14,13 +12,12 @@ import {
   ProductTitle,
   Quantity,
   Remove,
-  Size,
+  Total,
 } from "./cart.style";
-import "./cartcard.styles.scss";
 
 const CartCard = (props) => {
-  const { title, new_price, image, quantity } = props;
-
+  const { title, new_price, image, quantity, brand } = props;
+  const new_price_in_lkr = Number.parseFloat(new_price.slice(1));
   const { addToCart, removeToCartItem, removeToCartAtOnce } =
     useContext(CartContext);
   const addToProductCart = () => addToCart(props);
@@ -32,28 +29,32 @@ const CartCard = (props) => {
         </Image>
         <ProductTitle>
           <p className="title">
-            {title.length > 30
-              ? `${title.slice(0, 30).trim()}...`
+            {title.length > 20
+              ? `${title.slice(0, 20).trim()}...`
               : title.trim()}
           </p>
-          <p className="brand">dasd</p>
+          <p className="brand">{brand}</p>
+          <Remove onClick={() => removeToCartAtOnce(props)}>Remove</Remove>
         </ProductTitle>
       </Description>
-      <Size>L</Size>
+
       <Quantity>
         <span className="add" onClick={addToProductCart}>
-          <AddIcon sx={{ fontSize: 18, color: `${colors.colorWhite}` }} />
+          <IconButton>
+            <AddIcon sx={{ fontSize: 18 }} />
+          </IconButton>
         </span>
         <span className="count">{quantity}</span>
         <span className="remove" onClick={() => removeToCartItem(props)}>
-          <RemoveIcon sx={{ fontSize: 18, color: `${colors.inputBlack}` }} />
+          <IconButton>
+            <RemoveIcon sx={{ fontSize: 18 }} />
+          </IconButton>
         </span>
       </Quantity>
 
-      <Price className="price">Rs.{new_price.slice(1)}</Price>
-      <Remove className="remove" onClick={() => removeToCartAtOnce(props)}>
-        <CloseIcon sx={{ fontSize: 18, color: `${colors.inputBlack}` }} />
-      </Remove>
+      <Price className="price">Rs.{new_price_in_lkr}</Price>
+
+      <Total>Rs.{quantity * new_price_in_lkr}</Total>
     </CartContainer>
   );
 };
