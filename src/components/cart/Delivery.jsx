@@ -79,10 +79,10 @@ const DeliverCards = ({ id, title, expect_deliver, logo, deliver_charge }) => {
             }`}
             {expect_deliver}
           </span>
+          <span className="delivery_charge">
+            {deliver_charge === undefined ? "Free" : `$${deliver_charge}`}
+          </span>
         </div>
-        <span className="delivery_charge">
-          {deliver_charge === undefined ? "Free" : `$${deliver_charge}`}
-        </span>
       </DeliverDetails>
     </Card>
   );

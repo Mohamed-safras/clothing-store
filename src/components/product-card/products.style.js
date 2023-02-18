@@ -5,7 +5,7 @@ export const CardContainer = styled(Link)`
   // border-radius: 15px;
   max-height: 400px;
   position: relative;
-  // margin: 10px;
+
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
   /* @media screen and (max-width: 440px) {

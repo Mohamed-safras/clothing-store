@@ -3,8 +3,11 @@ import Slider from "react-slick";
 import styled from "styled-components";
 import CategoryItem from "../categories/CategoryItem";
 
-import categories from "../../data/data.json";
+import { useContext } from "react";
+import { ProductContext } from "../../context/product.context";
+
 const SliderComponent = ({ title }) => {
+  const { categories } = useContext(ProductContext);
   const settings = {
     arrows: false,
     infinite: false,
@@ -41,8 +44,8 @@ const SliderComponent = ({ title }) => {
     <Slide>
       <h3>{title}</h3>
       <Slider {...settings}>
-        {categories.categories.map(({ id, title, imageUrl }) => (
-          <CategoryItem key={id} title={title} imageUrl={imageUrl} />
+        {categories.map((item, index) => (
+          <CategoryItem key={index} title={item} />
         ))}
       </Slider>
     </Slide>

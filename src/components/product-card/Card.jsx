@@ -9,6 +9,7 @@ import { CartContext } from "../../context/cart.context";
 import { colors } from "../../styles/colors/theme";
 
 import {
+  AddToCart,
   Brand,
   CardBottom,
   CardContainer,
@@ -19,7 +20,6 @@ import {
   ProductTitle,
   Rating,
   Sizes,
-  AddToCart,
 } from "./products.style";
 
 const Card = (props) => {
