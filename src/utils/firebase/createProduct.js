@@ -26,7 +26,7 @@ export const addCollectionAndDocument = async (
 };
 
 export const getProducts = async () => {
-  const collectionRef = collection(db, "catagories");
+  const collectionRef = collection(db, "categories");
 
   const queryValue = query(collectionRef);
 
