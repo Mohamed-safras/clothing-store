@@ -1,20 +1,24 @@
-import React from "react";
+import EastIcon from "@mui/icons-material/East";
+import React, { Fragment, useContext, useRef } from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
+import { CategoriesContext } from "../../context/categories.context";
+import { colors } from "../../styles/colors";
+import ArrowIconBtn from "../button-component/ArrowIconBtn";
 import CategoryItem from "../categories/CategoryItem";
 
-import { useContext } from "react";
-import { ProductContext } from "../../context/product.context";
-
 const SliderComponent = ({ title }) => {
-  const { categories } = useContext(ProductContext);
+  const { categories } = useContext(CategoriesContext);
   const settings = {
     arrows: false,
-    infinite: false,
+    autoplay: true,
     speed: 500,
+    autoplaySpeed: 4000,
     slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
+    infinite: true,
+
     responsive: [
       {
         breakpoint: 1024,
@@ -40,15 +44,33 @@ const SliderComponent = ({ title }) => {
       },
     ],
   };
+  const slideRef = useRef(null);
+  const style = {
+    backgroundColor: colors.colorPrimary,
+    right: "1.5rem",
+    top: "45%",
+  };
   return (
-    <Slide>
-      <h3>{title}</h3>
-      <Slider {...settings}>
-        {categories.map((item, index) => (
-          <CategoryItem key={index} title={item} />
-        ))}
-      </Slider>
-    </Slide>
+    <Fragment>
+      <h3 style={{ padding: "10px" }}>{title}</h3>
+      <Slide>
+        <Slider ref={slideRef} {...settings}>
+          {Object.entries(categories).map((item, index) => (
+            <CategoryItem
+              key={index}
+              title={item[0]}
+              imageUrl={item[1][0]["image"]}
+            />
+          ))}
+        </Slider>
+
+        <ArrowIconBtn
+          Icon={EastIcon}
+          clickref={() => slideRef.current.slickNext()}
+          style={style}
+        />
+      </Slide>
+    </Fragment>
   );
 };
 
@@ -56,10 +78,7 @@ export default SliderComponent;
 
 const Slide = styled.div`
   width: 100%;
-  padding: 0 15px;
+  padding: 15px;
+  margin-bottom: 1rem;
   position: relative;
-
-  h3 {
-    margin: 10px 0;
-  }
 `;
