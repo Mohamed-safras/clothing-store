@@ -1,10 +1,11 @@
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
-import { IconButton } from "@mui/material";
+
 import React, { useRef } from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
+import ArrowIconBtn from "../button-component/ArrowIconBtn";
 
 import Banner from "./Banner";
 const bannerdata = [
@@ -39,6 +40,11 @@ const Banners = () => {
   };
 
   const slideRef = useRef(null);
+  const style = {
+    backgroundColor: colors.colorWhite,
+    color: colors.textColor,
+    top: "45%",
+  };
   return (
     <Slide>
       <Slider ref={slideRef} {...settings}>
@@ -47,16 +53,16 @@ const Banners = () => {
         ))}
       </Slider>
 
-      <Button onClick={() => slideRef?.current.slickNext()}>
-        <IconButton>
-          <EastIcon style={{ color: `${colors.colorBlack}`, fontSize: 26 }} />
-        </IconButton>
-      </Button>
-      <Button1 onClick={() => slideRef?.current.slickPrev()}>
-        <IconButton>
-          <WestIcon style={{ color: `${colors.colorBlack}`, fontSize: 26 }} />
-        </IconButton>
-      </Button1>
+      <ArrowIconBtn
+        Icon={EastIcon}
+        clickref={() => slideRef.current.slickNext()}
+        style={{ ...style, right: "1.5rem" }}
+      />
+      <ArrowIconBtn
+        Icon={WestIcon}
+        clickref={() => slideRef.current.slickPrev()}
+        style={{ ...style, left: "1.5rem" }}
+      />
     </Slide>
   );
 };
@@ -68,23 +74,4 @@ const Slide = styled.div`
   padding: 15px;
   margin-bottom: 1rem;
   position: relative;
-`;
-
-const Button = styled.div`
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  top: 45%;
-  right: 1.5rem;
-  background: ${colors.colorWhite};
-  border-radius: 50%;
-  padding: 10px;
-`;
-
-const Button1 = styled(Button)`
-  left: 1.5rem;
 `;
