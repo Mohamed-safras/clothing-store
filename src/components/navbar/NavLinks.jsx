@@ -14,7 +14,7 @@ const NavLinks = ({ toggleSearchBar }) => {
   const { currentUser } = useContext(UserContext);
   const { numberOfCartItems } = useContext(CartContext);
   return (
-    <NavRight onClick={logout}>
+    <NavRight>
       <SearchIconBtn onClick={toggleSearchBar}>
         <IconButton>
           <SearchIcon style={{ color: "#a1a0a5", fontSize: 26 }} />
