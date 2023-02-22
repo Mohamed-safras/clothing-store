@@ -2,12 +2,12 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { Avatar, Badge, IconButton } from "@mui/material";
-import { deepOrange } from "@mui/material/colors";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/cart.context";
 import { UserContext } from "../../context/user.context";
 import { colors } from "../../styles/colors";
+import { logout } from "../../utils/firebase/AuthMethods";
 import { NavRight, SearchIconBtn } from "./Navbar.styled";
 
 const NavLinks = ({ toggleSearchBar }) => {
@@ -34,6 +34,7 @@ const NavLinks = ({ toggleSearchBar }) => {
       </Link>
       {currentUser ? (
         <Avatar
+          onClick={logout}
           src={currentUser.photoURL}
           sx={{ margin: "0 10px", width: "30px", height: "30px" }}
         />
