@@ -3,7 +3,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { IconButton } from "@mui/material";
 import { useContext } from "react";
 import { CartContext } from "../../context/cart.context";
-import { colors } from "../../styles/colors/theme";
+// import { colors } from "../../styles/colors/theme";
 import {
   CartContainer,
   Description,
@@ -17,7 +17,7 @@ import {
 
 const CartCard = (props) => {
   const { title, new_price, image, quantity, brand } = props;
-  const new_price_in_lkr = Number.parseFloat(new_price.slice(1));
+
   const { addToCart, removeToCartItem, removeToCartAtOnce } =
     useContext(CartContext);
   const addToProductCart = () => addToCart(props);
@@ -52,9 +52,9 @@ const CartCard = (props) => {
         </span>
       </Quantity>
 
-      <Price className="price">Rs.{new_price_in_lkr}</Price>
+      <Price className="price">Rs.{new_price}</Price>
 
-      <Total>Rs.{quantity * new_price_in_lkr}</Total>
+      <Total>Rs.{quantity * new_price}</Total>
     </CartContainer>
   );
 };
