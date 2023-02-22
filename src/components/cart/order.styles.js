@@ -35,21 +35,18 @@ export const CartHeader = styled.div`
       width: 40%;
     }
   }
+  @media screen and (max-width: 550px) {
+    .header-block {
+      font-size: 12px;
+
+      width: 15%;
+      &:first-child {
+        width: 55%;
+      }
+    }
+  }
 `;
 
 export const CartItems = styled.div`
-  /* padding: 10px 0; */
   width: 100%;
-  /* height: 90%; */
-  /* overflow-y: scroll; */
-  /* ::-webkit-scrollbar {
-    display: none;
-  }
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
-  } */
 `;

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
-import "./categoryItem.styles.scss";
+
 const CategoryItem = ({ title, imageUrl }) => {
   return (
     <Container>

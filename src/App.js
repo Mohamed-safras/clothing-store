@@ -1,23 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { ProductContext } from "./context/product.context";
-// import CardProvider from "./context/cart.context";
 
 import axios from "axios";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import Cart from "./pages/cart/Cart";
 import Contact from "./pages/Contact";
-import Details from "./pages/Details.";
+import Details from "./pages/Details/Details.";
 import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import Products from "./pages/Products";
+
 import SharedLayout from "./pages/SharedLayout";
-import SharedProductLayout from "./pages/SharedProductLayout";
+
 import Shop from "./pages/shop/Shop";
 const App = () => {
-  const param = useLocation().pathname.split("/")[2];
+  const param = useLocation().pathname.split("/").pop();
+
   const [selectedFile, setSelectedFile] = useState();
   const [output, setOutput] = useState({});
   const changeHandler = (event) => {
@@ -45,8 +44,6 @@ const App = () => {
     }
   };
 
-  const { products } = useContext(ProductContext);
-
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
@@ -62,13 +59,9 @@ const App = () => {
             />
           }
         />
-
+        <Route path={`details/${param}`} element={<Details />} />
         <Route path={`shop/${param}`} element={<Shop />} />
         <Route path="contact" element={<Contact />} />
-        <Route path={`products/${param}`} element={<SharedProductLayout />}>
-          <Route index element={<Products />} />
-          <Route path={`:id`} element={<Details />} />
-        </Route>
 
         <Route path="*" element={<NotFound />} />
       </Route>

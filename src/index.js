@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import App from "./App";
 import { CartProvider } from "./context/cart.context";
-import { ProductProvider } from "./context/product.context";
+import { CategoriesProvider } from "./context/categories.context";
 import { ThemeProvider } from "./context/Theme.contex";
 import { UserProvider } from "./context/user.context";
 import "./index.scss";
@@ -16,11 +16,11 @@ root.render(
     <ThemeProvider>
       <BrowserRouter>
         <UserProvider>
-          <ProductProvider>
+          <CategoriesProvider>
             <CartProvider>
               <App />
             </CartProvider>
-          </ProductProvider>
+          </CategoriesProvider>
         </UserProvider>
       </BrowserRouter>
     </ThemeProvider>

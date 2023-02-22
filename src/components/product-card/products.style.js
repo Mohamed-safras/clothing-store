@@ -65,15 +65,6 @@ export const ProductTitle = styled.p`
   font-weight: 500;
 `;
 
-export const AddToCart = styled.div`
-  margin: 8px;
-  border: 2px solid ${colors.searchColor};
-  text-align: center;
-  span {
-    font-size: 14px;
-  }
-`;
-
 export const Brand = styled.p`
   color: ${colors.textColor};
   font-size: 14px;

@@ -9,7 +9,7 @@ export const ShopContainer = styled.div`
   display: grid;
   gap: 10px;
   padding: 15px;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   height: 100%;
   overflow: auto;
   width: calc(100vw - 270px);
