@@ -1,37 +1,40 @@
 // import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Card from "../../components/product-card/Card";
+import { CategoriesContext } from "../../context/categories.context";
 
-import { getProducts } from "../../utils/firebase/createProduct";
 import { Container, ShopContainer, SideBar } from "./stylesheet";
 const Shop = () => {
-  const [products, setProducts] = useState([]);
   const param = useLocation().pathname.split("/")[2];
+  const { categories } = useContext(CategoriesContext);
 
+  const [products, setProducts] = useState([]);
   useEffect(() => {
-    const categories = getProducts();
-    categories
-      .then((category) => {
-        setProducts(category[param]);
-      })
-      .catch((error) => console.log(error));
-  }, [param]);
+    setProducts(categories[param]);
+  }, [param, categories]);
+
   return (
     <Container>
-      <SideBar>
-        {[
-          1, 2, 4, 5, 6, 1, 2, 4, 5, 6, 1, 2, 4, 5, 6, 1, 2, 4, 5, 6, 1, 2, 4,
-          5, 6, 1, 2, 4, 5, 61, 2, 4, 5, 6,
-        ].map((param) => {
-          return <h1>{param}</h1>;
-        })}
-      </SideBar>
+      <SideBar></SideBar>
       <ShopContainer>
-        {products.map((item) => (
-          <Card key={item.id} {...item} />
-        ))}
+        {products &&
+          products?.map(
+            ({ id, title, brand, new_price, old_price, limit, image }) => (
+              <Card
+                key={id}
+                param={param}
+                id={id}
+                title={title}
+                brand={brand}
+                new_price={new_price}
+                old_price={old_price}
+                limit={limit}
+                image={image}
+              />
+            )
+          )}
       </ShopContainer>
     </Container>
   );
