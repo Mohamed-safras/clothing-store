@@ -117,32 +117,6 @@
         "price": 10,
         "image": "https://images.complex.com/complex/image/upload/c_crop,h_393,w_629,x_8,y_124/c_fill,dpr_auto,f_auto,fl_lossy,g_face,q_auto,w_1280/ljjim66ysfqzbexnwnzk.png"
       }
-    ],
-    "mens": [
-      {
-        "id": "1sfsdS4535xDAfsRw",
-        "name": "suite",
-        "price": 100,
-        "image": "https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWVucyUyMGZhc2hpb258ZW58MHx8MHx8&w=1000&q=80"
-      },
-      {
-        "id": "1sfdfssdsa35dsaRw",
-        "name": "T-shirt(mens)",
-        "price": 20,
-        "image": "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/10940528/2020/2/13/3e484090-d487-4252-9f30-beab10ce1f0a1581594832846-Roadster-Men-Tshirts-4501581594830605-1.jpg"
-      },
-      {
-        "id": "1sfsdSsdf453dsfsAfsfsdfRw",
-        "name": "T-shirt(Maroon)",
-        "price": 20,
-        "image": "https://cdn.shopify.com/s/files/1/0266/6276/4597/products/300910923MDWINE_2_1024x1024.jpg?v=1663920599"
-      },
-      {
-        "id": "1sffsdfsdSfsfsdw",
-        "name": "T-shirt(White)",
-        "price": 20,
-        "image": "https://media.very.co.uk/i/very/RRDAM_SQ1_0000000269_WHITE_BLACK_MDf/adidas-originals-trefoil-t-shirt-whiteblack.jpg?$180x240_retinamobilex2$"
-      }
     ]
   }
 }

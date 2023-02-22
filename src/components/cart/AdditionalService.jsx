@@ -5,13 +5,13 @@ import {
   PackageType,
   ServiceEnabalButton,
   ServicePackage,
-} from "./additional_service,styles";
+} from "./additional_service.styles";
 const AdditionalService = () => {
   return (
     <Container>
       <ServicePackage>
         <PackageType>
-          <span>Care+Package</span>
+          <span className="package_name">Care+Package</span>
           <span>One year of additional care</span>
         </PackageType>
         <PackagePrice>Rs.{"2.00"}</PackagePrice>
@@ -21,7 +21,7 @@ const AdditionalService = () => {
       </ServicePackage>
       <ServicePackage>
         <PackageType>
-          <span>Care+Package</span>
+          <span className="package_name">Care+Package</span>
           <span>One year of additional care</span>
         </PackageType>
         <PackagePrice>Rs.{"2.00"}</PackagePrice>
@@ -31,7 +31,7 @@ const AdditionalService = () => {
       </ServicePackage>
       <ServicePackage>
         <PackageType>
-          <span>Care+Package</span>
+          <span className="package_name">Care+Package</span>
           <span>One year of additional care</span>
         </PackageType>
         <PackagePrice>Rs.{"2.00"}</PackagePrice>

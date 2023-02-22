@@ -62,7 +62,7 @@ export const CartProvider = ({ children }) => {
     }, 0);
 
     const total = cartItems.reduce((prev, current) => {
-      const new_price = current.new_price.slice(1);
+      const new_price = current.new_price;
 
       return prev + current.quantity * Number.parseFloat(new_price);
     }, 0);

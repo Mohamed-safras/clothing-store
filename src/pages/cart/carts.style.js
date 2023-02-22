@@ -8,14 +8,9 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1rem;
+  height: 100%;
 
   @media screen and (max-width: 800px) {
     grid-template-columns: 1fr;
   }
 `;
-
-export const OrderContainer = styled.div`
-  /* display: flex; */
-`;
-
-export const DeliveryContainer = styled.div``;

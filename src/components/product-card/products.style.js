@@ -5,7 +5,7 @@ export const CardContainer = styled(Link)`
   // border-radius: 15px;
   max-height: 400px;
   position: relative;
-  // margin: 10px;
+
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
   /* @media screen and (max-width: 440px) {
@@ -63,15 +63,6 @@ export const CardHeader = styled.div`
 export const ProductTitle = styled.p`
   font-size: 15px;
   font-weight: 500;
-`;
-
-export const AddToCart = styled.div`
-  margin: 8px;
-  border: 2px solid ${colors.searchColor};
-  text-align: center;
-  span {
-    font-size: 14px;
-  }
 `;
 
 export const Brand = styled.p`
