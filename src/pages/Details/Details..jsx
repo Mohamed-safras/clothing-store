@@ -1,12 +1,5 @@
-import { Subtitles } from "@mui/icons-material";
-import React, { Fragment, useContext, useEffect, useState } from "react";
-import {
-  Link,
-  Navigate,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { CartContext } from "../../context/cart.context";
 import { CategoriesContext } from "../../context/categories.context";
 import {
@@ -24,23 +17,33 @@ const Details = () => {
   const { addToCart } = useContext(CartContext);
   const { categories } = useContext(CategoriesContext);
   const param = useLocation().pathname.split("/").pop();
-  console.log(useLocation().pathname);
+
   const [category, id] = param.split("-");
+  const products = categories[category];
+
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const product = products?.find((item) => item.id === id);
+    if (product) {
+      setProduct(product);
+    }
+  }, [product, id, category, products]);
 
   const addToProductCart = () => {
     const products = categories[category];
-    const item = products.find((item) => item.id === id);
-    addToCart(item);
+
+    const item = products?.find((item) => item.id === id);
+    if (item) {
+      addToCart(item);
+    }
   };
   return (
     <Container>
       <ProductDetailsContainer>
         <Images>
           <div class="column">
-            <img
-              src="https://cdn.pixabay.com/photo/2014/04/14/20/11/pink-324175__340.jpg"
-              alt=""
-            />
+            <img src={product.image} alt="" />
             <img
               src="https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg"
               alt=""
@@ -62,19 +65,19 @@ const Details = () => {
           </div>
         </Images>
         <ProductDetails>
-          <Title>Stay Positive Long T-Shirt</Title>
-          <Subtitle>Designed and sold by Steven Rhodes</Subtitle>
-
-          <Sizes>
-            <li className="active">S</li>
-            <li>M</li>
-            <li>L</li>
-            <li>XL</li>
-            <li>2XL</li>
-          </Sizes>
-
-          <AddToCart onClick={addToProductCart}>Add To Cart</AddToCart>
+          <Title>{product.title}</Title>
+          <Subtitle>{product.brand}</Subtitle>
+          {product.Sizes && (
+            <Sizes>
+              <li className="active">S</li>
+              <li>M</li>
+              <li>L</li>
+              <li>XL</li>
+              <li>2XL</li>
+            </Sizes>
+          )}
         </ProductDetails>
+        <AddToCart onClick={addToProductCart}>Add To Cart</AddToCart>
       </ProductDetailsContainer>
     </Container>
   );

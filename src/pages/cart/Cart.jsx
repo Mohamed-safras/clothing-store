@@ -9,6 +9,7 @@ import { Container } from "./carts.style";
 import EmptyCart from "./EmptyCart";
 const Cart = () => {
   const { numberOfCartItems } = useContext(CartContext);
+
   return (
     <Fragment>
       {numberOfCartItems > 0 ? (

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
@@ -50,14 +50,37 @@ export const CartContext = createContext({
   total: 0,
 });
 
-export const CartProvider = ({ children }) => {
-  // const { products } = useContext(ProductContext);
+const INITIALSTATE = {
+  cartItems: [],
+  numberOfCartItems: 0,
+  total: 0,
+};
 
-  const [cartItems, setCartItems] = useState([]);
-  const [numberOfCartItems, setNumberOfCartItems] = useState(0);
-  const [total, setTotal] = useState(0);
-  useEffect(() => {
-    const totalItems = cartItems.reduce((prev, current) => {
+export const CART_ACTIONS = {
+  SET_CART_ITEMS: "SET_CART_ITEMS",
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case CART_ACTIONS.SET_CART_ITEMS:
+      return {
+        ...state,
+        ...payload,
+      };
+    default:
+      throw new Error(`unhandle type of ${type}`);
+  }
+};
+
+export const CartProvider = ({ children }) => {
+  const [{ cartItems, numberOfCartItems, total }, dispatch] = useReducer(
+    cartReducer,
+    INITIALSTATE
+  );
+
+  const updateCartItems = (cartItems) => {
+    const numberOfCartItems = cartItems.reduce((prev, current) => {
       return prev + current.quantity;
     }, 0);
 
@@ -67,29 +90,46 @@ export const CartProvider = ({ children }) => {
       return prev + current.quantity * Number.parseFloat(new_price);
     }, 0);
 
-    setNumberOfCartItems(totalItems);
-    setTotal(total);
-  }, [cartItems]);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+
+    dispatch({
+      type: CART_ACTIONS.SET_CART_ITEMS,
+      payload: {
+        total,
+        numberOfCartItems,
+        cartItems,
+      },
+    });
+  };
+
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) ?? [];
+    updateCartItems(cartItems);
+  }, []);
 
   const addToCart = (productToAdd) => {
-    setCartItems(addCartItem(cartItems, productToAdd));
+    const newCartItems = addCartItem(cartItems, productToAdd);
+    updateCartItems(newCartItems);
   };
 
   const removeToCartItem = (productToRemove) => {
-    setCartItems(removeCartItem(cartItems, productToRemove));
+    const newCartItems = removeCartItem(cartItems, productToRemove);
+    updateCartItems(newCartItems);
   };
 
   const removeToCartAtOnce = (productToRemove) => {
-    setCartItems(removeCartItemAtOnce(cartItems, productToRemove));
+    const newCartItems = removeCartItemAtOnce(cartItems, productToRemove);
+    updateCartItems(newCartItems);
   };
 
   const value = {
-    cartItems,
     addToCart,
+    cartItems,
     numberOfCartItems,
+    total,
+    dispatch,
     removeToCartItem,
     removeToCartAtOnce,
-    total,
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

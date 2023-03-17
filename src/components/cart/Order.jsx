@@ -9,7 +9,8 @@ import {
 } from "./order.styles";
 
 const Order = () => {
-  const { cartItems, numberOfCartItems, total } = useContext(CartContext);
+  const { cartItems, numberOfCartItems } = useContext(CartContext);
+
   return (
     <ShoppingCart>
       <ShoppingCartHeader>
